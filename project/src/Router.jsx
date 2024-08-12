@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Main } from "./pages/Mainpage"
-import { Mypage } from "./pages/MyPage"
 import { Categorypage } from "./pages/Categorypage"
+import { Mypage } from "./pages/MyPage"
 
 export const Router =() => {
 
