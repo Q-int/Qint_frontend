@@ -13,6 +13,7 @@ export const Router =() => {
           <Route path="/" element={<Main/>}></Route>
           <Route path="/mypage" element={<Mypage/>}></Route>
           <Route path="/category" element={<Categorypage/>}></Route>
+          {/* <Route path="/SignUp" element={<SignUpPage />}></Route> */}
           <Route path="/question" element={<Questionpage/>}></Route>
         </Routes>
       </BrowserRouter>
