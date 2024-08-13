@@ -27,6 +27,7 @@ const GreenBtn = styled.button`
   font-weight: 700;
   width: 398px;
   height: 52px;
+  font-size: 16px;
 `;
 
 const LightGreenBtn = styled.button`
@@ -41,4 +42,5 @@ const LightGreenBtn = styled.button`
   font-weight: 700;
   width: 398px;
   height: 52px;
+  font-size: 16px;
 `;

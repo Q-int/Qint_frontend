@@ -1,9 +1,8 @@
-import { Router } from "./Router"
+import { Router } from "./Router";
+import "../src/fonts/fonts.css";
 
-function App () {
-  return(
-    <Router/>
-  )
-}
+export const App = () => {
+  return <Router />;
+};
 
 export default App;
