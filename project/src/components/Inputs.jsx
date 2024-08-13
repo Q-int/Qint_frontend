@@ -86,7 +86,7 @@ const PasswordEye = styled.button`
   position: absolute;
   border: none;
   background-color: transparent;
-  top: 12.5px;
+  top: 8.7px;
   right: 13px;
 
   &:focus {
