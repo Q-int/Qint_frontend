@@ -50,6 +50,7 @@ const SignUpContainer = styled.div`
   justify-content: start;
   width: 100vw;
   height: 100vh;
+  background-color: #ffffff;
 `;
 
 const SignUpAll = styled.div`
