@@ -3,12 +3,19 @@ import { Header } from "./../components/Header";
 import { Inputs } from "../components/Inputs";
 import { useState } from "react";
 import { Button } from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpPage = () => {
   const [password, setPassword] = useState({
     password1: "",
     password2: "",
   });
+
+  const navigate = useNavigate();
+
+  const LoginClick = () => {
+    navigate("/Login");
+  };
 
   return (
     <SignUpContainer>
@@ -37,7 +44,12 @@ export const SignUpPage = () => {
               setPassword={setPassword}
             />
           </InputsContainer>
-          <Button value1="회원가입" value2="로그인하러 가기" />
+          <Button
+            value1="회원가입"
+            value2="로그인하러 가기"
+            onClick1={LoginClick}
+            onClick2={LoginClick}
+          />
         </SignUpContent>
       </SignUpAll>
     </SignUpContainer>
