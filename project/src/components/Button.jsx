@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Button = ({ value1, value2 }) => {
+export const Button = ({ value1, value2, onClick1, onClick2 }) => {
   return (
     <BtnContainer>
-      <GreenBtn>{value1}</GreenBtn>
-      <LightGreenBtn>{value2}</LightGreenBtn>
+      <GreenBtn onClick={onClick1}>{value1}</GreenBtn>
+      <LightGreenBtn onClick={onClick2}>{value2}</LightGreenBtn>
     </BtnContainer>
   );
 };
