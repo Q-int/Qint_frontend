@@ -27,7 +27,7 @@ export const Main = () => {
 export default Main;
 
 const Container = styled.div`
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   width: 100vw;
   height: 100vh;
 `;
