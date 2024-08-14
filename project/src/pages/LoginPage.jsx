@@ -1,8 +1,19 @@
 import styled from "styled-components";
 import { Inputs } from "../components/Inputs";
 import { Button } from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const LoginClick = () => {
+    navigate("/category");
+  };
+
+  const SignUpClick = () => {
+    navigate("/SignUp");
+  };
+
   return (
     <>
       <LoginBackGround>
@@ -17,7 +28,12 @@ export const LoginPage = () => {
               <Inputs type="password" placeholder="비밀번호" />
             </InputAll>
           </LoginContents>
-          <Button value1="로그인" value2="회원가입하러  가기"></Button>
+          <Button
+            value1="로그인"
+            value2="회원가입하러  가기"
+            onClick1={LoginClick}
+            onClick2={SignUpClick}
+          ></Button>
         </LoginModal>
       </LoginBackGround>
     </>
