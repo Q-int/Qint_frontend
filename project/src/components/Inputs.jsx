@@ -1,30 +1,16 @@
 import styled from "styled-components";
 import { useState } from "react";
-import PropTypes from "prop-types";
 import { Eyes } from "../assets/Eyes";
-
-// Inputs.PropTypes = {
-//   type: PropTypes.string,
-//   label: PropTypes.string,
-//   placeholder: PropTypes.string,
-//   password: PropTypes.string,
-//   setPassword: PropTypes.func,
-// };
 
 export const Inputs = ({
   label,
   placeholder,
   type,
-  password,
-  setPassword,
+  inputs,
+  password1,
+  password2,
   ...props
 }) => {
-  const handleChangePassword = (e) => {
-    if (setPassword) {
-      setPassword(e.target.value);
-    }
-  };
-
   const [showPswd, setShowPswd] = useState(false);
 
   if (type === "password") {
@@ -35,8 +21,8 @@ export const Inputs = ({
             placeholder={placeholder}
             type={showPswd ? "text" : "password"}
             {...props}
-            onChange={handleChangePassword}
-            value={password}
+            value={password1 || password2}
+            maxLength="64"
           ></InputContainer>
           <PasswordEye onClick={() => setShowPswd(!showPswd)}>
             <Eyes isEye={showPswd} />
@@ -51,6 +37,7 @@ export const Inputs = ({
           placeholder={placeholder}
           type={type}
           {...props}
+          maxLength="64"
         ></InputContainer>
       </>
     );
@@ -62,7 +49,7 @@ const InputContainer = styled.input`
   padding: 16.5px 0 16.5px 13px;
   border-radius: 5px;
   width: 385px;
-  border: none;
+  border: 1px solid #f4f4f4;
   outline: none;
   font-size: 16px;
   &::placeholder {
