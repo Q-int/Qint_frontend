@@ -1,21 +1,58 @@
 import { styled } from "styled-components";
 import { Header } from "./../components/Header";
 import { Inputs } from "../components/Inputs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
 export const SignUpPage = () => {
-  const [password, setPassword] = useState({
-    password1: "",
-    password2: "",
-  });
-
   const navigate = useNavigate();
 
   const LoginClick = () => {
     navigate("/Login");
   };
+
+  const passwordRegEx = /^(?=.*[!@#$%^&*])(?=.{1,64}$).*/;
+
+  const [inputs, setInputs] = useState({
+    email: "",
+    code: "",
+    password1: "",
+    password2: "",
+  });
+
+  const { email, code, password1, password2 } = inputs;
+
+  const passwordCheck = () => {
+    if (password1 != password2) {
+      console.log("비밀번호가 다릅니다. 다시 입력하세요.");
+      return false;
+    }
+    if (!passwordRegEx.test(inputs.password1)) {
+      //비밀번호 형식이 잘못 되었을 때
+      console.log("비밀번호 형식이 잘못되었습니다. 다시 입력하세요.");
+      return false;
+    }
+    return true;
+  };
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value, //value값을 [name]에 넣어준다
+    });
+  };
+
+  useEffect(() => {
+    if (email !== "" && code !== "" && password1 !== "" && password2 !== "") {
+      //signup의 내용이 공백이 아닐 때
+      if (passwordCheck()) {
+        //비밀번호 형식에 맞는지 확인한다.
+        console.log(inputs);
+      }
+    }
+  }, [email, code, password1, password2]);
 
   return (
     <SignUpContainer>
@@ -24,24 +61,36 @@ export const SignUpPage = () => {
         <SignUpTitle>회원가입</SignUpTitle>
         <SignUpContent>
           <InputsContainer>
-            <Inputs placeholder="이메일" type="email" />
+            <Inputs
+              placeholder="이메일"
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+            />
             <CodeContainer>
               <SendBtn>Send</SendBtn>
-              <Inputs placeholder="인증코드" type="text" />
+              <Inputs
+                placeholder="인증코드"
+                type="text"
+                name="code"
+                value={code}
+                onChange={onChange}
+              />
             </CodeContainer>
             <Inputs
               placeholder="비밀번호"
               type="password"
               name="password1"
-              value="password1"
-              setPassword={setPassword}
+              value={password1}
+              onChange={onChange}
             />
             <Inputs
               placeholder="비밀번호 재입력"
               type="password"
               name="password2"
-              value="password2"
-              setPassword={setPassword}
+              value={password2}
+              onChange={onChange}
             />
           </InputsContainer>
           <Button
