@@ -4,6 +4,7 @@ import { Inputs } from "../components/Inputs";
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { PasswordRegex } from "../components/Regex";
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
@@ -11,8 +12,6 @@ export const SignUpPage = () => {
   const LoginClick = () => {
     navigate("/Login");
   };
-
-  const passwordRegEx = /^(?=.*[!@#$%^&*])(?=.{1,64}$).*/;
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -28,7 +27,7 @@ export const SignUpPage = () => {
       console.log("비밀번호가 다릅니다. 다시 입력하세요.");
       return false;
     }
-    if (!passwordRegEx.test(inputs.password1)) {
+    if (!PasswordRegex.test(inputs.password1)) {
       //비밀번호 형식이 잘못 되었을 때
       console.log("비밀번호 형식이 잘못되었습니다. 다시 입력하세요.");
       return false;
