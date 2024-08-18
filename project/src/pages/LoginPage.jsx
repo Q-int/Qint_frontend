@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Inputs } from "../components/Inputs";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,27 @@ export const LoginPage = () => {
     navigate("/SignUp");
   };
 
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = inputs;
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    if (email !== "" && password != "") {
+      console.log(inputs);
+    }
+  }, [email, password]);
+
   return (
     <>
       <LoginBackGround>
@@ -24,8 +46,20 @@ export const LoginPage = () => {
               <LoginSubTitle>사용하시려면 로그인하세요</LoginSubTitle>
             </LoginTitleAll>
             <InputAll>
-              <Inputs type="email" placeholder="이메일" />
-              <Inputs type="password" placeholder="비밀번호" />
+              <Inputs
+                type="email"
+                placeholder="이메일"
+                name="email"
+                value={email}
+                onChange={onChange}
+              />
+              <Inputs
+                type="password"
+                placeholder="비밀번호"
+                name="password"
+                value={password}
+                onChange={onChange}
+              />
             </InputAll>
           </LoginContents>
           <Button
