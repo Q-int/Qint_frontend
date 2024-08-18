@@ -5,7 +5,7 @@ import { Mypage } from "./pages/MyPage";
 import { Questionpage } from "./pages/Questionpage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { LoginPage } from "./pages/LoginPage";
-// import { Explainpage } from "./pages/Explainpage";
+import { Explainpage } from "./pages/Explainpage";
 
 export const Router = () => {
   return (
