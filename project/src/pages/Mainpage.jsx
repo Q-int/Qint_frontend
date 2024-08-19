@@ -36,7 +36,7 @@ const Headimg = styled.img.attrs({
   src: "/images/headerimg.jpg",
   alt: "이미지",
 })`
-  height: 129.5px;
+width: 100vw;
 `;
 const Logobox = styled.div`
   display: flex;
