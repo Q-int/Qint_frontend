@@ -41,13 +41,13 @@ width: 100vw;
 const Logobox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.7vw;
   justify-content: flex-start;
   align-items: flex-start;
 `;
 
 const Mainbox = styled.div`
-  height: 523px;
+  height: 72.8vh;
   width: 100vw;
   display: flex;
   justify-content: space-between;
@@ -58,35 +58,33 @@ const Logo1 = styled.img.attrs({
   src: "/images/Q-int.svg",
   alt: "로고",
 })`
-  height: 80px;
+  height: 11vh;
 `;
 
 const Logo2 = styled.img.attrs({
   src: "/images/Quick interview.svg",
   alt: "Quick interview",
 })`
-  font-size: 40px;
-  color: #00eda6;
+  height: 4.6vh;
 `;
 
 const Text = styled.p`
-  font-size: 40px;
+  font-size: 5.5vh;
   text-align: left;
-  font-family: pretendard;
   font-weight: 900;
 `;
 
 const Startbtn = styled.button`
-  width: 350px;
-  height: 60px;
+  width: 23vw;
+  height: 8.3vh;
   border: none;
   background: #00eda6;
-  box-shadow: 0px 4px 4px rgba(158, 158, 158, 0.25);
-  border-radius: 30px;
-  font-size: 22px;
+  box-shadow: 0px 1vh 1vh rgba(158, 158, 158, 0.25);
+  border-radius: 10vw;
+  font-size: 3vh;
   cursor: pointer;
-  margin-top: 370px;
-  margin-right: 130px;
+  margin-top: 50.7vh;
+  margin-right: 8.5vw;
 
   &:focus {
     border: none;
@@ -96,7 +94,7 @@ const Startbtn = styled.button`
 const Box1 = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 70px;
-  margin-left: 100px;
+  gap: 1.4vh;
+  margin-top: 9.6vh;
+  margin-left: 6.5vw;
 `;
