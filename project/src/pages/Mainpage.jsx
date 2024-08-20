@@ -69,9 +69,9 @@ const Logo2 = styled.img.attrs({
 `;
 
 const Text = styled.p`
-  font-size: 5.5vh;
+  font-size: 4.5vh;
   text-align: left;
-  font-weight: 900;
+  font-weight: 800;
 `;
 
 const Startbtn = styled.button`
