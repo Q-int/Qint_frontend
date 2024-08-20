@@ -44,7 +44,7 @@ export const Header = () => {
 
 const Container = styled.div`
   width: 100vw;
-  height: 9vh;
+  height: 8.9vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
