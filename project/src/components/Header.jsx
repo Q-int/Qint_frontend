@@ -44,11 +44,11 @@ export const Header = () => {
 
 const Container = styled.div`
   width: 100vw;
-  height: 65px;
+  height: 8.9vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 4px 4px rgba(191, 191, 191, 0.25);
+  box-shadow: 0px 1vh 1vh rgba(191, 191, 191, 0.25);
   background-color: #ffff;
 `;
 
@@ -57,19 +57,19 @@ const Logo = styled.img.attrs({
   alt: "로고",
 })`
   cursor: pointer;
-  height: 22px;
-  margin-left: 40px;
+  height: 3vh;
+  margin-left: 2.6vw;
 `;
 const Buttons = styled.div`
   display: flex;
-  gap: 40px;
+  gap: 2.6vw;
   align-items: center;
   background-color: transparent;
 `;
 
 const Mypagebtn = styled.div`
   background-color: transparent;
-  font-size: 14px;
+  font-size: 1.9vh;
   font-weight: 400;
   cursor: pointer;
   ${({ pathname }) =>
@@ -85,14 +85,14 @@ const Mypagebtn = styled.div`
 `;
 
 const Loginbtn = styled.button`
-  width: 114px;
-  height: 36px;
+  width: 7.5vw;
+  height: 4.8vh;
   background: #00eda6;
   box-shadow: 0px 4px 4px rgba(158, 158, 158, 0.25);
   border: none;
-  font-size: 14px;
-  border-radius: 5px;
-  margin-right: 150px;
+  font-size: 1.9vh;
+  border-radius: 0.5vh;
+  margin-right: 9.8vw;
   cursor: pointer;
 
   &:focus {
