@@ -8,13 +8,13 @@ export const Nextbtn = () => {
 
 const Container = styled.button`
   box-sizing: border-box;
-  width: 90px;
-  height: 35px;
+  width: 5.9vw;
+  height: 4.7vh;
   background-color: #265CFF; 
-  border-radius: 5px;
+  border-radius: 0.5vh;
   color: #fff;
   border: none;
-  font-size: 14px;
+  font-size: 1.8vh;
 
   &:focus {
   border: none;
