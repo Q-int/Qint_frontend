@@ -10,14 +10,14 @@ export const Option = ({ option }) => {
 
 const Container = styled.div`
 box-sizing: border-box;
-width: 1180px;
-height: 80px;
+width: 77vw;
+height: 10.6vh;
 background: #E4F9F3;
-border-radius: 15px;
+border-radius: 1vw;
 display: flex;
 justify-content: flex-start;
 align-items: center;
-padding-left: 45px;
-font-size: 19px;
+padding-left: 2.9vw;
+font-size: 2.7vh;
 font-weight: 400;
 `
