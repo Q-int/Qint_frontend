@@ -50,71 +50,68 @@ export const Mypage = () => {
 
 const Container = styled.div`
 background-color: #F4F4F4;
-height: calc(100vh - 70px);
+height: calc(100vh - 8.9vh);
 width: 100vw;
 display: flex;
 justify-content: space-between;
 align-items: center;
-padding: 0 100px;
+padding: 0 6.5vw;
 box-sizing: border-box;
 `
 
 const Percentagebox = styled.div`
-width: 600px;
-height: 550px;
+width: 39vw;
+height: 76vh;
 background-color: #fff;
 display: flex;
-border-radius: 10px;
+border-radius: 1vw;
 flex-direction: column;
 align-items: flex-start;
 `
 
 const P = styled.p`
-font-size: 20px;
-line-height: 21px;
+font-size: 2.7vh;
 color: #787878;
 font-weight: 600;
+margin-left: 1vw;
 `
 
 const Percenttextbox = styled.div`
-width: 384px;
-height: 110px;
+width: 25vw;
+height: 15vh;
 background: #FFFFFF;
-box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.25);
-border-radius: 6px;
+box-shadow: inset 0px 0px 1vh rgba(0, 0, 0, 0.25);
+border-radius: 1vh;
 display: flex;
 justify-content: flex-start;
 align-items: center;
-padding-left: 30px;
+padding-left: 2vw;
 box-sizing: border-box;
-gap: 20px;
+gap: 1.3vw;
 `
 
 const Greentext = styled.p`
-font-size: 17px;
+font-size: 2.3vh;
 color: #5BFF57;
-line-height: 21px;
-font-weight:800;
+font-weight:700;
 `
 
 const Redtext = styled.p`
-font-size: 17px;
+font-size: 2.3vh;
 color: #FF3263;
-line-height: 21px;
 font-weight:700;
 `
 
 const ShowWQbtn = styled.button`
-width: 351px;
-height: 80px;
+width: 22.8vw;
+height: 10.9vh;
 background: #FFFFFF;
-border-radius: 10px;
+border-radius: 0.7vw;
 display: flex;
 justify-content: center;
 align-items: center;
-gap: 10px;
-font-size: 25px;
-line-height: 21px;
+gap: 0.7vw;
+font-size: 3.5vh;
 letter-spacing: -0.32%;
 color: #50555C;
 font-weight: 700;
@@ -127,44 +124,35 @@ border: none;
 `
 
 const Intertext1 = styled.h1`
-font-size: 30px;
+font-size: 4vh;
 line-height: 21px;
 letter-spacing: -0.32%;
-`
-
-const Intertext2 = styled.h1`
-font-size: 25px;
-line-height: 21px;
-letter-spacing: -0.32%;
-color: #50555C;
 `
 
 const Intertext3 = styled.h1`
 font-weight: 500;
-font-size: 20px;
-line-height: 21px;
+font-size: 2.8vh;
 letter-spacing: -0.32%;
 color: #999999;
 `
 
 const Logoutbtn = styled.h1`
-font-size: 20px;
-line-height: 21px;
+font-size: 2.75vh;
 letter-spacing: -0.32%;
 font-weight: 500;
 cursor: pointer;
 `
 
 const Text = styled.p`
-font-size: 10px;
-line-height: 1px;
+font-size: 1.4vh;
+line-height: 0.1vh;
 letter-spacing: -0.32%;
 color: #6C6B6B;
 `
 
 const PercentText = styled.p`
-font-size: 15px;
-line-height: 9px;
+font-size: 2vh;
+line-height: 1.1vh;
 letter-spacing: -0.32%;
 font-weight: 700;
 `
@@ -173,27 +161,27 @@ const Icon = styled.img.attrs({
   src: "/images/again.svg",
   alt: "다시보기 이미지",
 })`
-
+  height: 4vh;
 `
 
 const Box = styled.div`
-margin-top: 3px;
+margin-top: 0.1vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
 `
 
 const Box1 = styled.div`
-margin-right: 100px;
+margin-right: 7vw;
 display: flex;
 flex-direction: column;
-gap: 20px;
+gap: 3vh;
 align-items: center;
 `
 
 const Box2 = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 1.3vw;
 `
 
 const Box3 = styled.div`
@@ -201,9 +189,9 @@ const Box3 = styled.div`
 `
 
 const Box4 = styled.div`
-  width: 400px;
+  width: 26vw;
   display: flex;
   flex-wrap: wrap;
-  padding-left: 24px;
+  padding-left: 2vw;
   box-sizing: border-box;
 `
