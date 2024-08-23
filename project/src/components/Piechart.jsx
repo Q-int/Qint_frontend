@@ -12,15 +12,13 @@ export const Piechart = ({ data }) => {
     };
 
     return (
-        <div style={{ width: '600px', height: '500px', margin: '0' }}>
+        <div style={{ width: '39vw', height: '69vh', margin: '0' }}>
             <ResponsivePie
                 data={data}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}
-                padAngle={1.8}
-                cornerRadius={8}
+                padAngle={0}
                 colors={['#5BFF57', '#FF3263']}
-                borderWidth={2}
                 arcLabelsSkipAngle={10}
                 arcLabelsTextColor="#000000"
                 arcLabelsRadiusOffset={0.55}
@@ -28,14 +26,14 @@ export const Piechart = ({ data }) => {
                 theme={{
                     labels: {
                         text: {
-                            fontSize: 25,
+                            fontSize: '3.5vh',
                             fontWeight: 700,
                             fill: '#000000',
                         },
                     },
                     legends: {
                         text: {
-                            fontSize: 19,
+                            fontSize: '2vh',
                             fontWeight: 700,
                             fill: '#000000',
                         },
@@ -52,15 +50,15 @@ export const Piechart = ({ data }) => {
                         anchor: 'top-left',
                         direction: 'column',
                         justify: false,
-                        translateX: 0,
-                        translateY: 0,
+                        translateX: -40,
+                        translateY: -20,
                         itemsSpacing: 0,
-                        itemWidth: 80,
+                        itemWidth: 0,
                         itemHeight: 20,
                         itemDirection: 'left-to-right',
                         itemOpacity: 1,
-                        symbolSize: 18,
-                        symbolShape: 'circle',
+                        symbolSize: 12,
+                        symbolShape: 'square',
                         symbolBorderColor: 'none',
                         effects: [
                             {
