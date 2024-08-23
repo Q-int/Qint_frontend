@@ -47,7 +47,7 @@ export const Questionpage = () => {
 
 const Conrainer = styled.div`
   box-sizing: border-box;
-  height: calc(100vh - 65px);
+  height: calc(100vh - 8.9vh);
   background-color: #f4f4f4;
 `
 
@@ -61,12 +61,12 @@ const Contentboxcontainer = styled.div`
 `
 
 const Contentbox = styled.div`
-width: 1200px;
-height: 100px;
+width: 78vw;
+height: 15.7vh;
 background: #FFFFFF;
-box-shadow: inset 0px 0px 10px rgba(103, 103, 103, 0.25);
-border-radius: 10px;
-font-size: 20px;
+box-shadow: inset 0px 0px 1.2vh rgba(103, 103, 103, 0.25);
+border-radius: 1vh;
+font-size: 2.75vh;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -74,18 +74,19 @@ justify-content: center;
 
 const Optionscontainer = styled.div`
   box-sizing: border-box;
-  height: calc(100vh - 65px - 40vh);
+  height: calc(100vh - 8.9vh - 40vh);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 3vh;
 `
 
 const Buttoncontainer = styled.div`
   box-sizing: border-box;
-  height: 109px;
+  height: 15vh;
   width: 100vw;
   display: flex;
   justify-content: flex-end;
-  padding-right: 180px;
+  padding-right: 11.7vw;
+  padding-top: 3.9vh;
 `
