@@ -88,7 +88,7 @@ const Loginbtn = styled.button`
   width: 7.5vw;
   height: 4.8vh;
   background: #00eda6;
-  box-shadow: 0px 4px 4px rgba(158, 158, 158, 0.25);
+  box-shadow: 0 0.4vh 0.4vw rgba(158, 158, 158, 0.25);
   border: none;
   font-size: 1.9vh;
   border-radius: 0.5vh;
