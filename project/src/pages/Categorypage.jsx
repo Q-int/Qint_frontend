@@ -2,10 +2,11 @@ import { Category } from "../components/Category"
 import styled from "styled-components"
 import { Header } from "../components/Header"
 import { useState } from "react"
+import { Startbtn } from "../components/Startbtn"
 
 export const Categorypage = () => {
 
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(true);
 
   return(
     <>
@@ -17,7 +18,9 @@ export const Categorypage = () => {
         <Category src={"/images/flutter.svg"} alt={"플러터이미지"} title={"flutter"} text={"플러터에 대해 알아보세요"} />
         <Category src={"/images/swift.svg"} alt={"스위프트이미지"} title={"swift"} text={"ios에 대해 알아보세요"} />
       </Categories>
-      <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>
+      <Box>
+        {isSelected ? <Startbtn/> : <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>}
+      </Box>
     </Container>
     </>
   )
@@ -29,16 +32,16 @@ const Container = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap: 7vh;
   background-color: #F4F4F4;
 `
 
 const Categories = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: flex-end;
   gap: 2.6vw;
-  
+  height: 56vh;
 `
 
 const Plstext = styled.p`
@@ -46,5 +49,13 @@ const Plstext = styled.p`
   font-weight: 500;
   letter-spacing: -0.32%;
   color: #50555C;
-  margin: 0;
+  margin: 10vh 0;
+`
+
+const Box = styled.div`
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 8.9vh - 56vh);
+  box-sizing: border-box;
+  justify-content: center;
 `
