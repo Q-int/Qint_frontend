@@ -1,9 +1,23 @@
+import { useState } from "react";
 import styled from "styled-components"
 
-export const Category =  ({src, alt, title, text}) => {
+export const Category =  ({src, alt, title, text, onSelect}) => {
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleSelect = () => {
+    if(isClicked) {
+      onSelect(false);
+      setIsClicked(false);
+    } else {
+      onSelect(true);
+      setIsClicked(true);
+    }
+  }
+
   return (
 
-  <Container>
+  <Container onClick={handleSelect} >
     <Imagecover>
       <Categoryimg src={src} alt={alt} />
     </Imagecover>
