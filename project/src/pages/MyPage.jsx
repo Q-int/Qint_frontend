@@ -125,7 +125,6 @@ border: none;
 
 const Intertext1 = styled.h1`
 font-size: 4vh;
-line-height: 21px;
 letter-spacing: -0.32%;
 `
 
