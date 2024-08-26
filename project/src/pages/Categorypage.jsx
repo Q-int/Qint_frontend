@@ -6,10 +6,25 @@ import { Startbtn } from "../components/Startbtn"
 
 export const Categorypage = () => {
 
-  const [isSelected, setIsSelected] = useState(false);
+  const [clickBack, setClickBack] = useState(false);
+  const [clickFront, setClickFront] = useState(false);
+  const [clickIos, setClickIos] = useState(false);
+  const [clickFlutter, setClickFlutter] = useState(false);
 
-  const selectedCategory = (tf) => {
-    setIsSelected(tf);
+  const selectedBack = (tf) => {
+    setClickBack(tf);
+  }
+
+  const selectedFront = (tf) => {
+    setClickFront(tf);
+  }
+
+  const selectedIos = (tf) => {
+    setClickIos(tf);
+  }
+
+  const selectedFlutter = (tf) => {
+    setClickFlutter(tf);
   }
 
   return(
@@ -17,13 +32,13 @@ export const Categorypage = () => {
       <Header/>
     <Container>
       <Categories>
-        <Category src={"/images/backend.svg"} alt={"백엔드이미지"} title={"backend"} text={"백엔드에 대해 알아보세요"} onSelect={selectedCategory} />
-        <Category src={"/images/frontend.svg"} alt={"프론트엔드이미지"} title={"frontend"} text={"프론트엔드에 대해 알아보세요"} onSelect={selectedCategory} />
-        <Category src={"/images/flutter.svg"} alt={"플러터이미지"} title={"flutter"} text={"플러터에 대해 알아보세요"} onSelect={selectedCategory} />
-        <Category src={"/images/swift.svg"} alt={"스위프트이미지"} title={"swift"} text={"ios에 대해 알아보세요"} onSelect={selectedCategory} />
+        <Category src={"/images/backend.svg"} alt={"백엔드이미지"} title={"backend"} text={"백엔드에 대해 알아보세요"} onSelect={selectedBack} />
+        <Category src={"/images/frontend.svg"} alt={"프론트엔드이미지"} title={"frontend"} text={"프론트엔드에 대해 알아보세요"} onSelect={selectedFront} />
+        <Category src={"/images/flutter.svg"} alt={"플러터이미지"} title={"flutter"} text={"플러터에 대해 알아보세요"} onSelect={selectedFlutter} />
+        <Category src={"/images/swift.svg"} alt={"스위프트이미지"} title={"swift"} text={"ios에 대해 알아보세요"} onSelect={selectedIos} />
       </Categories>
       <Box>
-        {isSelected ? <Startbtn/> : <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>}
+        {clickBack || clickFront || clickFlutter || clickIos ? <Startbtn/> : <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>}
       </Box>
     </Container>
     </>

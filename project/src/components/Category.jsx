@@ -17,7 +17,7 @@ export const Category =  ({src, alt, title, text, onSelect}) => {
 
   return (
 
-  <Container onClick={handleSelect} >
+  <Container onClick={handleSelect} isClicked={isClicked} >
     <Imagecover>
       <Categoryimg src={src} alt={alt} />
     </Imagecover>
@@ -34,7 +34,7 @@ const Container = styled.div`
   width: 18vw;
   height: 35.7vh;
   box-sizing: border-box;
-  border: 0.01vw solid #000;
+  border : ${props => props.isClicked ? "0.01vw solid #00EDA6" : "0.01vw solid #000"};
   border-radius: 1.5vh;
   overflow: hidden;
   background-color:#fff;
