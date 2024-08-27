@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Eyes } from "../assets/Eyes";
+// import { apiEmail } from "../apis/ApiEmail";
+import { useLocation } from "react-router-dom";
 
 export const Inputs = ({
   label,
@@ -9,21 +11,62 @@ export const Inputs = ({
   inputs,
   password1,
   password2,
+  style,
+  pathname,
+  getUnion,
+  value3,
+  getPswd,
+  getCode,
   ...props
 }) => {
   const [showPswd, setShowPswd] = useState(false);
+  const [borderColor, setBorderColor] = useState("#ffffff");
+
+  const location = useLocation();
+
+  /*
+  const { borderColor, borderColorFocus } = ApiEmail({
+    pathname: location.pathname,
+    setEmailInput,
+  });
+
+  */
+
+  // const getUnion = apiEmail("jiminelp@gmail.com"); api연동
+
+  useEffect(() => {
+    if (pathname == "/SignUp") {
+      setBorderColor(getUnion ? "#00eda6" : "#ff3951");
+    }
+  }, [getUnion, pathname]);
+
+  useEffect(() => {
+    if (pathname == "/SignUp") {
+      setBorderColor(getPswd ? "#00eda6" : "#ff3951");
+    }
+  }, [getPswd, pathname]);
+
+  useEffect(() => {
+    if (pathname == "/SignUp") {
+      setBorderColor(getCode ? "#00eda6" : "#ff3951");
+    }
+  }, [pathname, getCode]);
 
   if (type === "password") {
     return (
       <>
         <InputFakeContainer>
-          <InputContainer
-            placeholder={placeholder}
-            type={showPswd ? "text" : "password"}
-            {...props}
-            value={password1 || password2}
-            maxLength="64"
-          ></InputContainer>
+          <ExplainContainer>
+            <InputContainer
+              placeholder={placeholder}
+              type={showPswd ? "text" : "password"}
+              {...props}
+              value={password1 || password2}
+              maxLength="64"
+              bordercolor={borderColor}
+            ></InputContainer>
+            <InputExplain bordercolor={borderColor}>{value3}</InputExplain>
+          </ExplainContainer>
           <PasswordEye onClick={() => setShowPswd(!showPswd)}>
             <Eyes isEye={showPswd} />
           </PasswordEye>
@@ -32,24 +75,26 @@ export const Inputs = ({
     );
   } else {
     return (
-      <>
+      <ExplainContainer>
         <InputContainer
           placeholder={placeholder}
           type={type}
           {...props}
           maxLength="64"
+          bordercolor={borderColor}
         ></InputContainer>
-      </>
+        <InputExplain bordercolor={borderColor}>{value3}</InputExplain>
+      </ExplainContainer>
     );
   }
 };
 
 const InputContainer = styled.input`
+  border: ${({ bordercolor }) => bordercolor} solid 1px;
   background-color: #f4f4f4;
   padding: 16.5px 0 16.5px 13px;
   border-radius: 5px;
   width: 385px;
-  border: 1px solid #f4f4f4;
   outline: none;
   font-size: 16px;
   &::placeholder {
@@ -57,9 +102,12 @@ const InputContainer = styled.input`
     color: #b4b4b4;
   }
   &:focus {
-    border: #e0e0e0 solid 1px;
     outline: none;
-    background-color: #ffffffff;
+    background-color: #ffffff;
+    border: ${({ bordercolor }) => {
+        return bordercolor === "#ffffff" ? "#e0e0e0" : bordercolor;
+      }}
+      solid 1px;
   }
 `;
 
@@ -80,4 +128,15 @@ const PasswordEye = styled.button`
     outline: none;
     border: none;
   }
+`;
+
+const InputExplain = styled.div`
+  font-size: 10px;
+  color: ${({ bordercolor }) => bordercolor};
+`;
+
+const ExplainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
