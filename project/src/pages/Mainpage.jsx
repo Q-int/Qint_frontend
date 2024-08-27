@@ -1,7 +1,15 @@
 import styled from "styled-components";
 import { Header } from "../components/Header";
+import { useNavigate } from "react-router-dom";
 
 export const Main = () => {
+
+  const navigate = useNavigate();
+
+  const StartbtnClick = () => {
+    navigate('/category');
+  }
+
   return (
     <Container>
       <Header />
@@ -18,7 +26,7 @@ export const Main = () => {
             개발자 기술 면접 준비하기!
           </Text>
         </Box1>
-        <Startbtn>시작하기</Startbtn>
+        <Startbtn onClick={StartbtnClick}>시작하기</Startbtn>
       </Mainbox>
     </Container>
   );
