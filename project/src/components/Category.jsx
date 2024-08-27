@@ -1,9 +1,23 @@
+import { useState } from "react";
 import styled from "styled-components"
 
-export const Category =  ({src, alt, title, text}) => {
+export const Category =  ({src, alt, title, text, onSelect}) => {
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleSelect = () => {
+    if(isClicked) {
+      onSelect(false);
+      setIsClicked(false);
+    } else {
+      onSelect(true);
+      setIsClicked(true);
+    }
+  }
+
   return (
 
-  <Container>
+  <Container onClick={handleSelect} isClicked={isClicked} >
     <Imagecover>
       <Categoryimg src={src} alt={alt} />
     </Imagecover>
@@ -18,18 +32,18 @@ export const Category =  ({src, alt, title, text}) => {
 
 const Container = styled.div`
   width: 18vw;
-  height: 260px;
+  height: 35.7vh;
   box-sizing: border-box;
-  border: 1px solid #000;
-  border-radius: 10px;
+  border : ${props => props.isClicked ? "0.01vw solid #00EDA6" : "0.01vw solid #000"};
+  border-radius: 1.5vh;
   overflow: hidden;
   background-color:#fff;
 `
 
 const Imagecover = styled.div`
   width: 100%;
-  height: 170px;
-  border-bottom: 1px solid #000;
+  height: 24vh;
+  border-bottom: 0.01vw solid #000;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -46,21 +60,21 @@ const Categoryimg = styled.img`
 
 const Textbox = styled.div`
   width: 18vw;
-  height: 90px;
+  height: 8.6vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
+  padding: 0.6vw;
 `
 
 const Title = styled.p`
-  font-size: 18px;
+  font-size: 2.5vh;
   font-weight: 500;
   margin: 0;
 `
 
 const Text = styled.p`
-  font-size: 13px;
+  font-size: 1.8vh;
   font-weight: 500;
   margin: 0;
 `
