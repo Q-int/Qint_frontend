@@ -4,7 +4,7 @@ import { Header } from "../components/Header";
 export const Main = () => {
   return (
     <Container>
-      {<Header />}
+      <Header />
       <Headimg></Headimg>
       <Mainbox>
         <Box1>
@@ -30,6 +30,8 @@ const Container = styled.div`
   background-color: #ffffff;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Headimg = styled.img.attrs({
@@ -47,6 +49,7 @@ const Logobox = styled.div`
 `;
 
 const Mainbox = styled.div`
+box-sizing: border-box;
   height: 72.8vh;
   width: 100vw;
   display: flex;
