@@ -1,14 +1,14 @@
 import styled from "styled-components"
 
-export const Startbtn = () => {
+export const Startbtn = ({onClick}) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       시작하기
     </Container>
   )
 }
 
-const Container = styled.div`
+const Container = styled.button`
 margin-top: 100px;
 box-sizing: border-box;
 width: 24vw;
@@ -18,7 +18,6 @@ border-radius: 1vh;
 font-size: 14px;
 font-weight: 500;
 color: #fff;
-display: flex;
-justify-content: center;
-align-items: center;
+border: none;
+cursor: pointer;
 `
