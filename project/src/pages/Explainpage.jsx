@@ -61,12 +61,12 @@ const Contentboxcontainer = styled.div`
 `
 
 const Contentbox = styled.div`
-width: 1200px;
-height: 100px;
+width: 78vw;
+height: 15.7vh;
 background: #FFFFFF;
-box-shadow: inset 0px 0px 10px rgba(103, 103, 103, 0.25);
-border-radius: 10px;
-font-size: 20px;
+box-shadow: inset 0px 0px 1.2vh rgba(103, 103, 103, 0.25);
+border-radius: 1vh;
+font-size: 2.75vh;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -74,30 +74,30 @@ justify-content: center;
 
 const Explaincontainer = styled.div`
   box-sizing: border-box;
-  height: calc(100vh - 65px - 40vh);
+  height: calc(100vh - 8.9vh - 40vh);
   display: flex;
   flex-direction: column; 
   align-items: center;
-  gap: 50px;
+  gap: 7vh;
 `
 
 const Explainbox = styled.div`
 box-sizing: border-box;
-width: 1190px;
-height: 230px;
-padding: 20px 25px;
+width: 77.5vw;
+height: 31.5vh;
+padding: 2.7vh 1.6vw;
 background: #E4F9F3;
-box-shadow: inset 0px 0px 10px rgba(103, 103, 103, 0.25);
-border-radius: 10px;
-font-size: 20px;
+box-shadow: inset 0px 0px 0.5vw rgba(103, 103, 103, 0.25);
+border-radius: 1vw;
+font-size: 2.8vh;
 font-weight: 400;
 `
 
 const Buttoncontainer = styled.div`
   box-sizing: border-box;
-  height: 109px;
+  height: 15vh;
   width: 100vw;
   display: flex;
   justify-content: flex-end;
-  padding-right: 180px;
+  padding-right: 11.7vw;
 `
