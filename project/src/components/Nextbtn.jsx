@@ -15,6 +15,7 @@ const Container = styled.button`
   color: #fff;
   border: none;
   font-size: 1.8vh;
+  cursor: pointer;
 
   &:focus {
   border: none;
