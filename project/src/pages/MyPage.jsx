@@ -1,8 +1,15 @@
 import { Header } from "../components/Header";
 import styled from "styled-components";
 import { Piechart } from "../components/Piechart";
+import { useNavigate } from "react-router-dom";
 
 export const Mypage = () => {
+
+  const navigate = useNavigate();
+
+  const showWrongQsbtnHandle = () => {
+    navigate('/wrongs');
+  }
 
   const data = [
     { id: '정답', value: 70 },
@@ -30,7 +37,7 @@ export const Mypage = () => {
               </Box>
             </Percenttextbox>
             <Intertext1>틀린 문제를 다시 체크 해보세요</Intertext1>
-            <ShowWQbtn>
+            <ShowWQbtn onClick={showWrongQsbtnHandle}>
                 틀린 문제 다시보기
                 <Icon/>
             </ShowWQbtn>
@@ -116,6 +123,7 @@ letter-spacing: -0.32%;
 color: #50555C;
 font-weight: 700;
 border: none;
+cursor: pointer;
 
 &:focus {
   border: none;
