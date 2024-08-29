@@ -1,8 +1,17 @@
 import styled from "styled-components"
 
-export const Nextbtn = () => {
+export const Nextbtn = ({Qnum, onNextQ}) => {
+
+  const nextQuestion = () => {
+    if(Qnum < 14){
+      onNextQ(++Qnum);
+    } else {
+      console.log("문제 끝");
+    }
+  }
+
   return(
-    <Container>다음 문제</Container>
+    <Container onClick={nextQuestion}>다음 문제</Container>
   )
 }
 
