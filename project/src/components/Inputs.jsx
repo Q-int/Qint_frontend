@@ -17,6 +17,9 @@ export const Inputs = ({
   value3,
   getPswd,
   getCode,
+  onBlur,
+  emailColor,
+
   ...props
 }) => {
   const [showPswd, setShowPswd] = useState(false);
@@ -33,6 +36,12 @@ export const Inputs = ({
   */
 
   // const getUnion = apiEmail("jiminelp@gmail.com"); api연동
+
+  useEffect(() => {
+    if (pathname == "/SignUp") {
+      setBorderColor(emailColor ? "#00eda6" : "#ff3951");
+    }
+  }, [emailColor, pathname]);
 
   useEffect(() => {
     if (pathname == "/SignUp") {
@@ -58,14 +67,15 @@ export const Inputs = ({
         <InputFakeContainer>
           <ExplainContainer>
             <InputContainer
+              onBlur={onBlur}
               placeholder={placeholder}
               type={showPswd ? "text" : "password"}
               {...props}
               value={password1 || password2}
               maxLength="64"
-              bordercolor={borderColor}
+              borderColor={borderColor}
             ></InputContainer>
-            <InputExplain bordercolor={borderColor}>{value3}</InputExplain>
+            <InputExplain borderColor={borderColor}>{value3}</InputExplain>
           </ExplainContainer>
           <PasswordEye onClick={() => setShowPswd(!showPswd)}>
             <Eyes isEye={showPswd} />
@@ -81,16 +91,17 @@ export const Inputs = ({
           type={type}
           {...props}
           maxLength="64"
-          bordercolor={borderColor}
+          borderColor={borderColor}
+          onBlur={onBlur}
         ></InputContainer>
-        <InputExplain bordercolor={borderColor}>{value3}</InputExplain>
+        <InputExplain borderColor={borderColor}>{value3}</InputExplain>
       </ExplainContainer>
     );
   }
 };
 
 const InputContainer = styled.input`
-  border: ${({ bordercolor }) => bordercolor} solid 1px;
+  border: ${({ borderColor }) => borderColor} solid 1px;
   background-color: #f4f4f4;
   padding: 16.5px 0 16.5px 13px;
   border-radius: 5px;
@@ -104,8 +115,8 @@ const InputContainer = styled.input`
   &:focus {
     outline: none;
     background-color: #ffffff;
-    border: ${({ bordercolor }) => {
-        return bordercolor === "#ffffff" ? "#e0e0e0" : bordercolor;
+    border: ${({ borderColor }) => {
+        return borderColor === "#ffffff" ? "#e0e0e0" : borderColor;
       }}
       solid 1px;
   }
@@ -132,7 +143,7 @@ const PasswordEye = styled.button`
 
 const InputExplain = styled.div`
   font-size: 10px;
-  color: ${({ bordercolor }) => bordercolor};
+  color: ${({ borderColor }) => borderColor};
 `;
 
 const ExplainContainer = styled.div`
