@@ -4,11 +4,14 @@ import { Piechart } from "../components/Piechart";
 import { useNavigate } from "react-router-dom";
 
 export const Mypage = () => {
-
   const navigate = useNavigate();
 
   const showWrongQsbtnHandle = () => {
     navigate('/wrongs');
+  }
+
+  const logoutbtnHandle = () => {
+    navigate('/');
   }
 
   const data = [
@@ -44,7 +47,7 @@ export const Mypage = () => {
             <Box4>
               <Box2>
                   <Intertext3>끝내시려면 로그아웃 하세요</Intertext3>
-                  <Logoutbtn>로그아웃</Logoutbtn>
+                  <Logoutbtn onClick={logoutbtnHandle}>로그아웃</Logoutbtn>
                 </Box2>
                 <Text>문제 오류 신고 010-9382-0145</Text>
             </Box4>
