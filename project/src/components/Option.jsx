@@ -1,9 +1,10 @@
 import styled from "styled-components"
 
-export const Option = ({ option }) => {
+export const Option = ({ option, mode , rw}) => {
+
   return(
-    <Container>
-      {option.text}
+    <Container mode={mode} rw={rw}>
+      {mode ? option.text : option}
     </Container>
   )
 }
@@ -20,4 +21,5 @@ align-items: center;
 padding-left: 2.9vw;
 font-size: 2.7vh;
 font-weight: 400;
+border: ${props => props.mode ? "none" : props.rw ? "1px solid green" : "1px solid red"};
 `

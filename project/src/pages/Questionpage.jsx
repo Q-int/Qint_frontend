@@ -8,6 +8,7 @@ export const Questionpage = () => {
 
   const [Qnum, setQnum] = useState(0);
 
+  const mode = true;
   const Questions = [
     {
         "question_id": 1,
@@ -357,7 +358,7 @@ export const Questionpage = () => {
       </Contentboxcontainer>
       <Optionscontainer>
         {Questions[Qnum].options.map((option, index) => (
-          <Option key={index} option={option} />
+          <Option key={index} option={option} mode={mode} />
         ))}
       </Optionscontainer>
       <Buttoncontainer>
