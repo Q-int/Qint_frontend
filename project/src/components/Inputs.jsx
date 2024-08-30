@@ -18,6 +18,7 @@ export const Inputs = ({
   getPswd,
   getCode,
   onBlur,
+  value,
   emailColor,
 
   ...props
@@ -38,25 +39,25 @@ export const Inputs = ({
   // const getUnion = apiEmail("jiminelp@gmail.com"); api연동
 
   useEffect(() => {
-    if (pathname == "/SignUp") {
+    if (pathname == "/SignUp" && value != "") {
       setBorderColor(emailColor ? "#00eda6" : "#ff3951");
     }
   }, [emailColor, pathname]);
 
   useEffect(() => {
-    if (pathname == "/SignUp") {
+    if (pathname == "/SignUp" && value != "") {
       setBorderColor(getUnion ? "#00eda6" : "#ff3951");
     }
   }, [getUnion, pathname]);
 
   useEffect(() => {
-    if (pathname == "/SignUp") {
+    if (pathname == "/SignUp" && value != "") {
       setBorderColor(getPswd ? "#00eda6" : "#ff3951");
     }
   }, [getPswd, pathname]);
 
   useEffect(() => {
-    if (pathname == "/SignUp") {
+    if (pathname == "/SignUp" && value != "") {
       setBorderColor(getCode ? "#00eda6" : "#ff3951");
     }
   }, [pathname, getCode]);
