@@ -1,17 +1,30 @@
 import styled from "styled-components"
 
-export const Nextbtn = ({Qnum, onNextQ}) => {
+export const Nextbtn = ({Qnum, onNextQ, WQlength, onNextWQ, WQnum, mode}) => {
 
   const nextQuestion = () => {
     if(Qnum < 14){
       onNextQ(++Qnum);
-    } else {
-      console.log("문제 끝");
     }
   }
 
+  const nextWrongQuestion = () => {
+    if(WQnum < WQlength - 1){
+      onNextWQ(++WQnum);
+    }
+  }
+
+  const onNextClick = () => {
+    if(mode) {
+      nextQuestion();
+    } else {
+      nextWrongQuestion();
+    }
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+
   return(
-    <Container onClick={nextQuestion}>다음 문제</Container>
+    <Container onClick={onNextClick}>다음 문제</Container>
   )
 }
 

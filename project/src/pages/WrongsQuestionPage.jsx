@@ -102,6 +102,12 @@ export const WrongsQuestionPage = () => {
     ]
 }
 
+  const [WQnum, setWQnum] = useState(0);
+  const [WQlength, setWQlength] = useState(Questions.incorrect_answers.length);
+
+const nextWrongQuestion = (n) => {
+  setWQnum(n);
+}
 
 
   return(
@@ -109,18 +115,18 @@ export const WrongsQuestionPage = () => {
       <Header/>
       <Contentboxcontainer>
         <Contentbox>
-          {Questions.incorrect_answers[0].contents}
+          {Questions.incorrect_answers[WQnum].contents}
         </Contentbox>
       </Contentboxcontainer>
       <Explaincontainer>
-        <Option option={Questions.incorrect_answers[0].incorrect_answer} rw={false}/>
-        <Option option={Questions.incorrect_answers[0].correct_answer} rw={true}/>
+        <Option option={Questions.incorrect_answers[WQnum].incorrect_answer} rw={false}/>
+        <Option option={Questions.incorrect_answers[WQnum].correct_answer} rw={true}/>
         <Explainbox>
-          그거 아닌데 뭔소리징
+          {Questions.incorrect_answers[WQnum].commentary}
         </Explainbox>
       </Explaincontainer>
       <Buttoncontainer>
-        <Nextbtn/>
+        <Nextbtn onNextWQ={nextWrongQuestion} WQlength={WQlength} WQnum={WQnum} mode={false}/>
       </Buttoncontainer>
     </Container>
   )

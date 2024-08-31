@@ -362,7 +362,7 @@ export const Questionpage = () => {
         ))}
       </Optionscontainer>
       <Buttoncontainer>
-        <Nextbtn Qnum={Qnum} onNextQ={nextQuestion}/>
+        <Nextbtn Qnum={Qnum} onNextQ={nextQuestion} mode={true}/>
       </Buttoncontainer>
     </Conrainer>
     </>
