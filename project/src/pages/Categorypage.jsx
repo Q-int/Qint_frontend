@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Header } from "../components/Header"
 import { useState } from "react"
 import { Startbtn } from "../components/Startbtn"
+import { useNavigate } from "react-router-dom"
 
 export const Categorypage = () => {
 
@@ -10,6 +11,13 @@ export const Categorypage = () => {
   const [clickFront, setClickFront] = useState(false);
   const [clickIos, setClickIos] = useState(false);
   const [clickFlutter, setClickFlutter] = useState(false);
+
+  const navigate = useNavigate();
+
+  const startHandle = () => {
+    navigate('/question');
+  }
+
 
   const selectedBack = (tf) => {
     setClickBack(tf);
@@ -26,6 +34,7 @@ export const Categorypage = () => {
   const selectedFlutter = (tf) => {
     setClickFlutter(tf);
   }
+  
 
   return(
     <>
@@ -38,7 +47,7 @@ export const Categorypage = () => {
         <Category src={"/images/swift.svg"} alt={"스위프트이미지"} title={"swift"} text={"ios에 대해 알아보세요"} onSelect={selectedIos} />
       </Categories>
       <Box>
-        {clickBack || clickFront || clickFlutter || clickIos ? <Startbtn/> : <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>}
+        {clickBack || clickFront || clickFlutter || clickIos ? <Startbtn clicked={startHandle}/> : <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>}
       </Box>
     </Container>
     </>

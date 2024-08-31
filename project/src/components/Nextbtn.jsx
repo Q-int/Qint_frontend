@@ -1,8 +1,30 @@
 import styled from "styled-components"
 
-export const Nextbtn = () => {
+export const Nextbtn = ({Qnum, onNextQ, WQlength, onNextWQ, WQnum, mode}) => {
+
+  const nextQuestion = () => {
+    if(Qnum < 14){
+      onNextQ(++Qnum);
+    }
+  }
+
+  const nextWrongQuestion = () => {
+    if(WQnum < WQlength - 1){
+      onNextWQ(++WQnum);
+    }
+  }
+
+  const onNextClick = () => {
+    if(mode) {
+      nextQuestion();
+    } else {
+      nextWrongQuestion();
+    }
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+
   return(
-    <Container>다음 문제</Container>
+    <Container onClick={onNextClick}>다음 문제</Container>
   )
 }
 
@@ -15,6 +37,7 @@ const Container = styled.button`
   color: #fff;
   border: none;
   font-size: 1.8vh;
+  cursor: pointer;
 
   &:focus {
   border: none;

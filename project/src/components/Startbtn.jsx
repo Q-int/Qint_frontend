@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export const Startbtn = () => {
+export const Startbtn = ({clicked}) => {
   return (
-    <Container>
+    <Container onClick={clicked}>
       시작하기
     </Container>
   )
@@ -21,4 +21,10 @@ color: #fff;
 display: flex;
 justify-content: center;
 align-items: center;
+cursor:pointer;
+
+&:focus {
+  border: none;
+  outline: none;
+}
 `
