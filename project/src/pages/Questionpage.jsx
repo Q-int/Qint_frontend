@@ -2,13 +2,14 @@ import styled from "styled-components"
 import { Header } from "../components/Header"
 import { Option } from "../components/Option"
 import { Nextbtn } from "../components/Nextbtn"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const Questionpage = () => {
 
   const [Qnum, setQnum] = useState(0);
 
   const mode = true;
+
   const Questions = [
     {
         "question_id": 1,
@@ -342,6 +343,10 @@ export const Questionpage = () => {
   }
 ]
 
+const [selectedOption, setSelectedOption] = useState(undefined);
+const optionSelect = (n) => {
+  setSelectedOption(n);
+}
 
   const nextQuestion = (n) => {
     setQnum(n);
@@ -358,7 +363,7 @@ export const Questionpage = () => {
       </Contentboxcontainer>
       <Optionscontainer>
         {Questions[Qnum].options.map((option, index) => (
-          <Option key={index} option={option} mode={mode} />
+          <Option key={index} option={option} mode={mode} id={index} selected={optionSelect} selectedOption={selectedOption} Qnum={Qnum}/>
         ))}
       </Optionscontainer>
       <Buttoncontainer>
