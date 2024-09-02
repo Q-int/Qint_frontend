@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 
 export const Option = ({ option, mode , rw, id, selected, selectedOption, Qnum}) => {
   const [isClicked, setIsClicked] = useState(false);
+  const { pathname } = useLocation();
 
   const clickHandle = () => {
-    if(isClicked) {
-      setIsClicked(false);
-    } else {
-      setIsClicked(true);
-      selected(id);
+    if(pathname.includes('question')){
+      if(isClicked) {
+        setIsClicked(false);
+      } else {
+        setIsClicked(true);
+        selected(id);
+      }
     }
   }
 
