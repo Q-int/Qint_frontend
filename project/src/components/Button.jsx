@@ -1,10 +1,34 @@
 import styled from "styled-components";
 
-export const Button = ({ value1, value2, onClick1, onClick2 }) => {
+export const Button = ({
+  value1,
+  value2,
+  onClick1,
+  onClick2,
+  backColor1,
+  backColor2,
+  fontColor1,
+  fontColor2,
+  fontWeight,
+}) => {
   return (
     <BtnContainer>
-      <GreenBtn onClick={onClick1}>{value1}</GreenBtn>
-      <LightGreenBtn onClick={onClick2}>{value2}</LightGreenBtn>
+      <FirstBtn
+        onClick={onClick1}
+        backColor1={backColor1}
+        fontColor1={fontColor1}
+        fontWeight={fontWeight}
+      >
+        {value1}
+      </FirstBtn>
+      <SecondBtn
+        onClick={onClick2}
+        backColor2={backColor2}
+        fontColor2={fontColor2}
+        fontWeight={fontWeight}
+      >
+        {value2}
+      </SecondBtn>
     </BtnContainer>
   );
 };
@@ -15,31 +39,31 @@ const BtnContainer = styled.div`
   gap: 7px;
 `;
 
-const GreenBtn = styled.button`
+const FirstBtn = styled.button`
   cursor: pointer;
-  background-color: #00eda6;
+  background-color: ${({ backColor1 }) => backColor1};
   border-radius: 8px;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffffff;
-  font-weight: 700;
+  color: ${({ fontColor1 }) => fontColor1};
+  font-weight: ${({ fontWeight }) => fontWeight};
   width: 398px;
   height: 52px;
   font-size: 16px;
 `;
 
-const LightGreenBtn = styled.button`
+const SecondBtn = styled.button`
   cursor: pointer;
-  background-color: #e4f9f3;
+  background-color: ${({ backColor2 }) => backColor2};
   border-radius: 8px;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #00eda6;
-  font-weight: 700;
+  color: ${({ fontColor2 }) => fontColor2};
+  font-weight: ${({ fontWeight }) => fontWeight};
   width: 398px;
   height: 52px;
   font-size: 16px;

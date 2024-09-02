@@ -1,3 +1,5 @@
+//사용하지 않는 페이지입니다.
+
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { Eyes } from "../assets/Eyes";
@@ -15,12 +17,12 @@ export const Inputs = ({
   pathname,
   getUnion,
   value3,
-  getPswd,
+  getPswd1,
+  getPswd2,
   getCode,
   onBlur,
   value,
   emailColor,
-
   ...props
 }) => {
   const [showPswd, setShowPswd] = useState(false);
@@ -52,9 +54,15 @@ export const Inputs = ({
 
   useEffect(() => {
     if (pathname == "/SignUp" && value != "") {
-      setBorderColor(getPswd ? "#00eda6" : "#ff3951");
+      setBorderColor(getPswd1 ? "#00eda6" : "#ff3951");
     }
-  }, [getPswd, pathname]);
+  }, [getPswd1, pathname]);
+
+  useEffect(() => {
+    if (pathname == "/SignUp" && value != "") {
+      setBorderColor(getPswd2 ? "#00eda6" : "#ff3951");
+    }
+  }, [getPswd2, pathname, getPswd1]);
 
   useEffect(() => {
     if (pathname == "/SignUp" && value != "") {

@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { Header } from "./../components/Header";
+import { Input } from "../components/Input";
 import { Inputs } from "../components/Inputs";
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
@@ -15,7 +16,12 @@ export const SignUpPage = ({ pathname }) => {
   //api가 맞나, 클릭했을 때 router 설정
   const signupClick = () => {
     //인증코드가 일치할 때 Login페이지로 넘어가게하기
-    if (getCode === true) {
+    if (
+      getCode === false &&
+      getPswd1 === false &&
+      getPswd2 === false &&
+      emailColor === false
+    ) {
       setModal(true);
     }
 
@@ -40,30 +46,37 @@ export const SignUpPage = ({ pathname }) => {
 
   //비밀번호 형식 확인 및 pswd explain
   //비밀번호 두개가 맞는 지 확인 후 pswd Explain으로 내용 보내기
-  const [getPswd, setGetPswd] = useState(false);
+  const [getPswd1, setGetPswd1] = useState(false);
+  const [getPswd2, setGetPswd2] = useState(false);
 
-  const passwordCheck = () => {
-    if (password1 != password2) {
-      setExplainPswd2("비밀번호가 다릅니다. 다시 입력하세요.");
-      setGetPswd(false);
-      return false;
+  const passwordCheck1 = () => {
+    if (password1 !== password2) {
+      setExplainPswd1("비밀번호가 다릅니다. 다시 입력하세요.");
+      setGetPswd1(true);
     } else {
-      setExplainPswd2("비밀번호가 일치합니다.");
-      setGetPswd(true);
+      setGetPswd1(false);
     }
+  };
+
+  useEffect(() => {
+    passwordCheck1();
+  }, [password1, password2]);
+
+  const passwordCheck2 = () => {
     if (!PasswordRegex.test(inputs.password1)) {
       //비밀번호 형식이 잘못 되었을 때
-      setExplainPswd1(
+      setExplainPswd2(
         "영어, 숫자, 특수기호를 모두 한 개 이상 포함한 8~64 문자 사이의 비밀번호"
       );
-      setGetPswd(false);
-      return false;
+      setGetPswd2(true);
     } else {
-      setExplainPswd1("비밀번호 형식이 맞습니다.");
-      setGetPswd(true);
+      setGetPswd2(false);
     }
-    return true;
   };
+
+  useEffect(() => {
+    passwordCheck2();
+  }, [password1]);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -77,7 +90,7 @@ export const SignUpPage = ({ pathname }) => {
   useEffect(() => {
     if (email !== "" && code !== "" && password1 !== "" && password2 !== "") {
       //signup의 내용이 공백이 아닐 때
-      if (passwordCheck()) {
+      if (passwordCheck1() && passwordCheck2()) {
         //비밀번호 형식에 맞는지 확인한다.
         console.log(inputs);
       }
@@ -94,42 +107,51 @@ export const SignUpPage = ({ pathname }) => {
     //이메일 형식이 잘못되었을 때
     if (!EmailRegex.test(inputs.email)) {
       setExplainEmail("이메일 형식이 일치하지 않습니다.");
-      setEmailColor(false);
-    } else {
-      setExplainEmail("이메일 형식이 맞습니다.");
       setEmailColor(true);
+    } else {
+      setEmailColor(false);
     }
-    return true;
   };
 
-  //이메일 형식이 맞는지 아닌지 확인하기
+  useEffect(() => {
+    emailCheck();
+  }, [email]);
+
+  //중복된 이메일인지 확인하기
   const sendBtnClick = () => {
     //Email Api 보내기
-    setGetUnion(true);
+    setEmailColor(true);
+    setExplainEmail("중복된 이메일 입니다.");
   };
 
-  //Email Explain 내용입니다. API 확인하고 중복이 있는지 확인한다.
-  useEffect(() => {
-    setExplainEmail(
-      getUnion ? "사용 가능한 이메일입니다." : "중복된 이메일입니다."
-    );
-  }, [getUnion]);
+  // //Email Explain 내용입니다. API 확인하고 중복이 있는지 확인한다.
+  // useEffect(() => {
+  //   sendBtnClick();
+  // }, [emailColor]);
 
   const [getCode, setGetCode] = useState(false);
   const [explainCode, setExplainCode] = useState("");
 
   //인증코드가 맞는지 아닌지 받아오기
   const sendObject = () => {
-    setGetCode(true);
+    setGetCode(false);
   };
 
   const codeCheck = () => {
-    // sendObject();
-    setGetCode(true);
+    sendObject();
+    if (getCode === true) {
+      setExplainCode("인증코드가 일치하지 않습니다.");
+    } else {
+      setExplainCode("인증코드가 일치합니다.");
+    }
     // setExplainCode(
     //   getCode ? "인증코드가 일치합니다." : "인증코드가 일치하지 않습니다."
     // );
   };
+
+  useEffect(() => {
+    codeCheck();
+  }, [getCode]);
 
   const [modal, setModal] = useState(false);
 
@@ -141,59 +163,60 @@ export const SignUpPage = ({ pathname }) => {
           <SignUpTitle>회원가입</SignUpTitle>
           <SignUpContent>
             <InputsContainer>
-              <Inputs
+              <Input
                 placeholder="이메일"
                 type="email"
                 name="email"
                 value={email}
                 onChange={onChange}
-                pathname={"/SignUp"}
-                getUnion={getUnion}
-                value3={explainEmail}
-                onBlur={emailCheck}
-                // borderColor={borderColor}
-                emailColor={emailColor}
+                isError={emailColor}
+                isSignUp
+                errorMsg={explainEmail}
+                successMsg="이메일 형식이 맞습니다."
               />
               <CodeContainer>
-                <SendBtn onClick={sendBtnClick}>Send</SendBtn>
-                <Inputs
-                  onBlur={codeCheck}
+                <SendBtn
+                  onClick={sendBtnClick}
+                  isError={getUnion}
+                  errorMsg={explainEmail}
+                  successMsg={explainEmail}
+                >
+                  Send
+                </SendBtn>
+                <Input
                   placeholder="인증코드"
                   type="text"
                   name="code"
                   value={code}
-                  pathname={"/SignUp"}
                   onChange={onChange}
-                  getCode={getCode}
-                  value3={
-                    getCode
-                      ? "인증코드가 일치합니다."
-                      : "인증코드가 일치하지 않습니다."
-                  }
-                  // borderColor={borderColor}
+                  isError={getCode}
+                  isSignUp
+                  errorMsg={explainCode}
+                  successMsg={explainCode}
                 />
               </CodeContainer>
-              <Inputs
+              <Input
                 placeholder="비밀번호"
                 type="password"
                 name="password1"
                 value={password1}
-                pathname={"/SignUp"}
                 onChange={onChange}
-                value3={explainPswd1}
-                getPswd={getPswd}
-                // borderColor={borderColor}
+                isError={getPswd2}
+                isSignUp
+                errorMsg={explainPswd2}
+                successMsg="비밀번호 형식이 맞습니다."
               />
-              <Inputs
+              <Input
                 placeholder="비밀번호 재입력"
                 type="password"
                 name="password2"
                 value={password2}
-                pathname={"/SignUp"}
                 onChange={onChange}
-                value3={explainPswd2}
-                getPswd={getPswd}
-                // borderColor={borderColor}
+                pathname={"/SignUp"}
+                isError={getPswd1}
+                isSignUp
+                errorMsg={explainPswd1}
+                successMsg="비밀번호가 일치합니다."
               />
             </InputsContainer>
             <Button
@@ -201,6 +224,11 @@ export const SignUpPage = ({ pathname }) => {
               value2="로그인하러 가기"
               onClick1={signupClick}
               onClick2={loginPathClick}
+              fontColor1="#ffffff"
+              fontColor2="#00EDA6"
+              backColor1="#00EDA6"
+              backColor2="#E4F9F3"
+              fontWeight="700"
             />
             {modal && (
               <ModalOverlay onClick={signupClick}>
