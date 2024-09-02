@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
 export const Nextbtn = ({Qnum, onNextQ, WQlength, onNextWQ, WQnum, mode}) => {
 
+  const navigate = useNavigate();
+
   const nextQuestion = () => {
     if(Qnum < 14){
       onNextQ(++Qnum);
+    } else {
+      navigate('/explain');
     }
   }
 

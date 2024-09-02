@@ -1,9 +1,30 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components"
 
-export const Option = ({ option, mode , rw}) => {
+export const Option = ({ option, mode , rw, id, selected, selectedOption, Qnum}) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const clickHandle = () => {
+    if(isClicked) {
+      setIsClicked(false);
+    } else {
+      setIsClicked(true);
+      selected(id);
+    }
+  }
+
+  useEffect(() => {
+    if(isClicked && selectedOption != id) {
+      setIsClicked(false);
+    }
+  }, [selectedOption]);
+
+  useEffect(() => {
+    setIsClicked(false);
+  }, [Qnum]);
 
   return(
-    <Container mode={mode} rw={rw}>
+    <Container mode={mode} rw={rw} isClick={isClicked} selectedOption={selectedOption} onClick={clickHandle} id={id}>
       {mode ? option.text : option}
     </Container>
   )
@@ -13,7 +34,7 @@ const Container = styled.div`
 box-sizing: border-box;
 width: 77vw;
 height: 10.6vh;
-background: #E4F9F3;
+background: ${props => props.isClick && props.selectedOption == props.id ? "#C7FFEF" : "#E4F9F3"};
 border-radius: 1vw;
 display: flex;
 justify-content: flex-start;
