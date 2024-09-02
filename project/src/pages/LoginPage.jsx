@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Inputs } from "../components/Inputs";
+import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -46,14 +46,14 @@ export const LoginPage = () => {
               <LoginSubTitle>사용하시려면 로그인하세요</LoginSubTitle>
             </LoginTitleAll>
             <InputAll>
-              <Inputs
+              <Input
                 type="email"
                 placeholder="이메일"
                 name="email"
                 value={email}
                 onChange={onChange}
               />
-              <Inputs
+              <Input
                 type="password"
                 placeholder="비밀번호"
                 name="password"
@@ -67,6 +67,11 @@ export const LoginPage = () => {
             value2="회원가입하러  가기"
             onClick1={LoginClearClick}
             onClick2={SignUpClick}
+            fontColor1="#ffffff"
+            fontColor2="#00EDA6"
+            backColor1="#00EDA6"
+            backColor2="#E4F9F3"
+            fontWeight="700"
           ></Button>
         </LoginModal>
       </LoginBackGround>

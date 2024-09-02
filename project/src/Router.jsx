@@ -7,6 +7,7 @@ import { SignUpPage } from "./pages/SignUpPage";
 import { LoginPage } from "./pages/LoginPage";
 import { Explainpage } from "./pages/Explainpage";
 import { WrongsQuestionPage } from "./pages/WrongsQuestionPage";
+import { ScoreCheckPage } from "./pages/ScoreCheckPage";
 
 export const Router = () => {
   return (
@@ -19,8 +20,9 @@ export const Router = () => {
           <Route path="/SignUp" element={<SignUpPage />}></Route>
           <Route path="/question" element={<Questionpage />}></Route>
           <Route path="/Login" element={<LoginPage />}></Route>
-          <Route path="/explain" element={<Explainpage/>}></Route>
-          <Route path="/wrongs" element={<WrongsQuestionPage/>}></Route>
+          <Route path="/explain" element={<Explainpage />}></Route>
+          <Route path="/wrongs" element={<WrongsQuestionPage />}></Route>
+          <Route path="/scorecheck" element={<ScoreCheckPage />} />
         </Routes>
       </BrowserRouter>
     </div>
