@@ -120,7 +120,7 @@ export const SignUpPage = ({ pathname }) => {
   //중복된 이메일인지 확인하기
   const sendBtnClick = () => {
     //Email Api 보내기
-    setEmailColor(true);
+    setEmailColor(false);
     setExplainEmail("중복된 이메일 입니다.");
   };
 
