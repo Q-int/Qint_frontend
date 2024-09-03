@@ -3,10 +3,12 @@ import { Header } from "../components/Header"
 import { Option } from "../components/Option"
 import { Nextbtn } from "../components/Nextbtn"
 import { useEffect, useState } from "react"
+import { Explainbtn } from "../components/Explainbtn"
 
 export const Questionpage = () => {
 
   const [Qnum, setQnum] = useState(0);
+  const [showExplainBtn, setShowExplainBtn] = useState(false);
 
   const mode = true;
 
@@ -346,10 +348,14 @@ export const Questionpage = () => {
 const [selectedOption, setSelectedOption] = useState(undefined);
 const optionSelect = (n) => {
   setSelectedOption(n);
-}
+  }
 
   const nextQuestion = (n) => {
     setQnum(n);
+  }
+
+  const onShowEXbtn = (tf) => {
+    setShowExplainBtn(tf);
   }
 
   return(
@@ -363,15 +369,25 @@ const optionSelect = (n) => {
       </Contentboxcontainer>
       <Optionscontainer>
         {Questions[Qnum].options.map((option, index) => (
-          <Option key={index} option={option} mode={mode} id={index} selected={optionSelect} selectedOption={selectedOption} Qnum={Qnum}/>
+        <Option
+          key={index}
+          option={option}
+          mode={mode} id={index}
+          selected={optionSelect}
+          selectedOption={selectedOption}
+          Qnum={Qnum}
+          showEXbtn={showExplainBtn}
+          onShowEXbtn={onShowEXbtn}
+          />
         ))}
-      </Optionscontainer>
-      <Buttoncontainer>
+    </Optionscontainer>
+    <Buttoncontainer>
+        <Explainbtn showEXbtn={showExplainBtn}/>
         <Nextbtn Qnum={Qnum} onNextQ={nextQuestion} mode={true}/>
-      </Buttoncontainer>
+    </Buttoncontainer>
     </Conrainer>
     </>
-  )
+)
 }
 
 const Conrainer = styled.div`
@@ -418,4 +434,5 @@ const Buttoncontainer = styled.div`
   justify-content: flex-end;
   padding-right: 11.7vw;
   padding-top: 3.9vh;
+  gap: 0.7vw;
 `

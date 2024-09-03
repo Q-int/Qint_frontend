@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 
-export const Option = ({ option, mode , rw, id, selected, selectedOption, Qnum}) => {
+export const Option = ({ option, mode , rw, id, selected, selectedOption, Qnum, showEXbtn, onShowEXbtn}) => {
   const [isClicked, setIsClicked] = useState(false);
   const { pathname } = useLocation();
 
   const clickHandle = () => {
     if(pathname.includes('question')){
       if(isClicked) {
-        setIsClicked(false);
+        onShowEXbtn(true);
       } else {
         setIsClicked(true);
         selected(id);
@@ -28,7 +28,14 @@ export const Option = ({ option, mode , rw, id, selected, selectedOption, Qnum})
   }, [Qnum]);
 
   return(
-    <Container mode={mode} rw={rw} isClick={isClicked} selectedOption={selectedOption} onClick={clickHandle} id={id}>
+    <Container 
+    mode={mode}
+    rw={rw}
+    isClick={isClicked}
+    selectedOption={selectedOption}
+    onClick={clickHandle}
+    id={id}
+    >
       {mode ? option.text : option}
     </Container>
   )
