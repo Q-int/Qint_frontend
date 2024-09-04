@@ -2,13 +2,17 @@ import styled from "styled-components"
 import { Header } from "../components/Header"
 import { Option } from "../components/Option"
 import { Nextbtn } from "../components/Nextbtn"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { Explainbtn } from "../components/Explainbtn"
+import { useLocation } from "react-router-dom"
 
 export const Questionpage = () => {
 
-  const [Qnum, setQnum] = useState(0);
+  const location = useLocation();
 
-  const mode = true;
+  const [Qnum, setQnum] = useState(0);
+  const [showExplainBtn, setShowExplainBtn] = useState(false);
+  const [EXQ, setEXQ] = useState();
 
   const Questions = [
     {
@@ -341,16 +345,34 @@ export const Questionpage = () => {
           }
       ]
   }
-]
+] 
+
+  const mode = true;
 
 const [selectedOption, setSelectedOption] = useState(undefined);
 const optionSelect = (n) => {
   setSelectedOption(n);
-}
+  }
 
   const nextQuestion = (n) => {
     setQnum(n);
   }
+
+  const onShowEXbtn = (tf) => {
+    setShowExplainBtn(tf);
+  }
+
+  const onEXQ = (Q) => {
+    setEXQ(Q);
+  }
+  
+
+  useEffect(() => {
+    if(localStorage.getItem("next") == 'true'){
+      setQnum((location.state.nQ) + 1);
+      localStorage.setItem("next", false);
+    }
+  })
 
   return(
     <>
@@ -363,15 +385,26 @@ const optionSelect = (n) => {
       </Contentboxcontainer>
       <Optionscontainer>
         {Questions[Qnum].options.map((option, index) => (
-          <Option key={index} option={option} mode={mode} id={index} selected={optionSelect} selectedOption={selectedOption} Qnum={Qnum}/>
+        <Option
+          key={index}
+          option={option}
+          mode={mode} id={index}
+          selected={optionSelect}
+          selectedOption={selectedOption}
+          Qnum={Qnum}
+          showEXbtn={showExplainBtn}
+          onShowEXbtn={onShowEXbtn}
+          onEXQ={onEXQ}
+          />
         ))}
-      </Optionscontainer>
-      <Buttoncontainer>
-        <Nextbtn Qnum={Qnum} onNextQ={nextQuestion} mode={true}/>
-      </Buttoncontainer>
+    </Optionscontainer>
+    <Buttoncontainer>
+        <Explainbtn showEXbtn={showExplainBtn} EXQ={EXQ} Qnum={Qnum}/>
+        <Nextbtn Qnum={Qnum} onNextQ={nextQuestion}/>
+    </Buttoncontainer>
     </Conrainer>
     </>
-  )
+)
 }
 
 const Conrainer = styled.div`
@@ -418,4 +451,5 @@ const Buttoncontainer = styled.div`
   justify-content: flex-end;
   padding-right: 11.7vw;
   padding-top: 3.9vh;
+  gap: 0.7vw;
 `

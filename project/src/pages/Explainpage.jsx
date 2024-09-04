@@ -2,26 +2,34 @@ import styled from "styled-components"
 import { Header } from "../components/Header"
 import { Nextbtn } from "../components/Nextbtn"
 import { Option } from "../components/Option"
+import { Explainbtn } from "../components/Explainbtn"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 
 export const Explainpage = () => {
 
-  const Questions = {
+  const [Question, setQuestion] = useState({
 		"answer_text" : "3.1415926535...",
-		"commentay" : "어쩌구 저쩌구 해서 쨌든 그냥 니가 틀리고 내가 맞음 어쩔팁이",
+		"commentay" : "어쩌구 저쩌구 해서 쨌든 그냥 니가 틀리고 내가 맞음 어쩔팁이",  
 		"is_correct" : true
-}
+})
 
+const location = useLocation();
+
+useEffect(() => {
+  setQuestion(location.state.EXQ);
+})
 
   return(
     <Container>
       <Header/>
       <Contentboxcontainer>
         <Contentbox>
-          {Questions.contents}
+          {Question.commentay}
         </Contentbox>
       </Contentboxcontainer>
       <Explaincontainer>
-        <Option option={Questions.options[1]}/>
+        <Option option={Question.answer_text} rw={Question.is_correct}/>
         <Explainbox>
           그거 아닌데 뭔소리징
         </Explainbox>
