@@ -2,14 +2,21 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 
-export const Option = ({ option, mode , rw, id, selected, selectedOption, Qnum, showEXbtn, onShowEXbtn}) => {
+export const Option = ({ option, mode , rw, id, selected, selectedOption, Qnum, showEXbtn, onShowEXbtn, onEXQ }) => {
   const [isClicked, setIsClicked] = useState(false);
   const { pathname } = useLocation();
+
+  const Question = {
+		"answer_text" : "3.1415926535...",
+		"commentay" : "어쩌구 저쩌구 해서 쨌든 그냥 니가 틀리고 내가 맞음",
+		"is_correct" : true
+}
 
   const clickHandle = () => {
     if(pathname.includes('question')){
       if(isClicked) {
         onShowEXbtn(true);
+        onEXQ(Question);
       } else {
         setIsClicked(true);
         selected(id);

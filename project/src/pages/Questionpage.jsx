@@ -9,6 +9,7 @@ export const Questionpage = () => {
 
   const [Qnum, setQnum] = useState(0);
   const [showExplainBtn, setShowExplainBtn] = useState(false);
+  const [EXQ, setEXQ] = useState();
 
   const mode = true;
 
@@ -358,6 +359,10 @@ const optionSelect = (n) => {
     setShowExplainBtn(tf);
   }
 
+  const onEXQ = (Q) => {
+    setEXQ(Q);
+  }
+
   return(
     <>
     <Header/>
@@ -378,11 +383,12 @@ const optionSelect = (n) => {
           Qnum={Qnum}
           showEXbtn={showExplainBtn}
           onShowEXbtn={onShowEXbtn}
+          onEXQ={onEXQ}
           />
         ))}
     </Optionscontainer>
     <Buttoncontainer>
-        <Explainbtn showEXbtn={showExplainBtn}/>
+        <Explainbtn showEXbtn={showExplainBtn} EXQ={EXQ}/>
         <Nextbtn Qnum={Qnum} onNextQ={nextQuestion} mode={true}/>
     </Buttoncontainer>
     </Conrainer>

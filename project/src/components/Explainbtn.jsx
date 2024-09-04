@@ -1,10 +1,15 @@
-import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
-export const Explainbtn = ({ showEXbtn }) => {
+export const Explainbtn = ({ showEXbtn, EXQ }) => {
+
+  const navigate = useNavigate();
+  const EXbtnClickHandle = () => {
+    navigate('/explain', { state: {EXQ: EXQ}});
+  }
   
   return(
-    <Container display={showEXbtn}>
+    <Container display={showEXbtn} onClick={EXbtnClickHandle}>
       해설
     </Container>
   )
