@@ -2,16 +2,17 @@ import styled from "styled-components"
 import { Header } from "../components/Header"
 import { Option } from "../components/Option"
 import { Nextbtn } from "../components/Nextbtn"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Explainbtn } from "../components/Explainbtn"
+import { useLocation } from "react-router-dom"
 
 export const Questionpage = () => {
+
+  const location = useLocation();
 
   const [Qnum, setQnum] = useState(0);
   const [showExplainBtn, setShowExplainBtn] = useState(false);
   const [EXQ, setEXQ] = useState();
-
-  const mode = true;
 
   const Questions = [
     {
@@ -344,7 +345,9 @@ export const Questionpage = () => {
           }
       ]
   }
-]
+] 
+
+  const mode = true;
 
 const [selectedOption, setSelectedOption] = useState(undefined);
 const optionSelect = (n) => {
@@ -362,6 +365,14 @@ const optionSelect = (n) => {
   const onEXQ = (Q) => {
     setEXQ(Q);
   }
+  
+
+  useEffect(() => {
+    if(localStorage.getItem("next") == 'true'){
+      setQnum((location.state.nQ) + 1);
+      localStorage.setItem("next", false);
+    }
+  })
 
   return(
     <>
@@ -388,8 +399,8 @@ const optionSelect = (n) => {
         ))}
     </Optionscontainer>
     <Buttoncontainer>
-        <Explainbtn showEXbtn={showExplainBtn} EXQ={EXQ}/>
-        <Nextbtn Qnum={Qnum} onNextQ={nextQuestion} mode={true}/>
+        <Explainbtn showEXbtn={showExplainBtn} EXQ={EXQ} Qnum={Qnum}/>
+        <Nextbtn Qnum={Qnum} onNextQ={nextQuestion}/>
     </Buttoncontainer>
     </Conrainer>
     </>

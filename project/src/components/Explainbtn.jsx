@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
-export const Explainbtn = ({ showEXbtn, EXQ }) => {
+export const Explainbtn = ({ showEXbtn, EXQ, Qnum}) => {
 
   const navigate = useNavigate();
   const EXbtnClickHandle = () => {
     navigate('/explain', { state: {EXQ: EXQ}});
+    localStorage.setItem("next", true);
   }
   
   return(

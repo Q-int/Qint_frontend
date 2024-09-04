@@ -1,31 +1,34 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
-export const Nextbtn = ({Qnum, onNextQ, WQlength, onNextWQ, WQnum, mode}) => {
+export const Nextbtn = ({Qnum, onNextQ, WQlength, onNextWQ, WQnum }) => {
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const nextQuestion = () => {
-    if(Qnum < 14){
-      onNextQ(++Qnum);
-    } else {
-      navigate('/explain');
+    if(pathname.includes('question')){
+      if(Qnum < 14){
+        onNextQ(++Qnum);
+        localStorage.setItem("Qnum", Qnum);
+      } else {
+        navigate('/explain');//이거 지우고 모달 띄우는 기능 추가
+      }
+    } else if(pathname.includes('wrongs')){
+      if(WQnum < WQlength - 1){
+        onNextWQ(++WQnum);
+        window.scrollTo({top: 0, behavior: "smooth"});
+      }
+    } else if(pathname.includes('explain')){
+      const nQ = parseInt(localStorage.getItem("Qnum"));
+      navigate('/question', {state: {nQ : nQ}});
     }
   }
 
-  const nextWrongQuestion = () => {
-    if(WQnum < WQlength - 1){
-      onNextWQ(++WQnum);
-    }
-  }
 
   const onNextClick = () => {
-    if(mode) {
-      nextQuestion();
-    } else {
-      nextWrongQuestion();
-    }
-    window.scrollTo({top: 0, behavior: "smooth"});
+  nextQuestion();
   }
 
   return(
