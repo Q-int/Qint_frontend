@@ -1,46 +1,50 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components"
+import styled from "styled-components";
 
-export const Nextbtn = ({Qnum, onNextQ, WQlength, onNextWQ, WQnum }) => {
-
+export const Nextbtn = ({
+  Qnum,
+  onNextQ,
+  WQlength,
+  onNextWQ,
+  WQnum,
+  qModalState,
+  setQModalState,
+}) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const nextQuestion = () => {
-    if(pathname.includes('question')){
-      if(Qnum < 14){
+    if (pathname.includes("question")) {
+      if (Qnum < 14) {
         onNextQ(++Qnum);
         localStorage.setItem("Qnum", Qnum);
       } else {
-        navigate('/explain');//이거 지우고 모달 띄우는 기능 추가
+        setQModalState(true);
       }
-    } else if(pathname.includes('wrongs')){
-      if(WQnum < WQlength - 1){
+    } else if (pathname.includes("wrongs")) {
+      if (WQnum < WQlength - 1) {
         onNextWQ(++WQnum);
-        window.scrollTo({top: 0, behavior: "smooth"});
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    } else if(pathname.includes('explain')){
+    } else if (pathname.includes("explain")) {
       const nQ = parseInt(localStorage.getItem("Qnum"));
-      navigate('/question', {state: {nQ : nQ}});
+      navigate("/question", { state: { nQ: nQ } });
     }
-  }
-
+  };
 
   const onNextClick = () => {
-  nextQuestion();
-  }
+    nextQuestion();
+  };
 
-  return(
-    <Container onClick={onNextClick}>다음 문제</Container>
-  )
-}
+  return <Container onClick={onNextClick}>다음 문제</Container>;
+};
 
 const Container = styled.button`
   box-sizing: border-box;
   width: 5.9vw;
   height: 4.7vh;
-  background-color: #265CFF; 
+  background-color: #265cff;
   border-radius: 0.5vh;
   color: #fff;
   border: none;
@@ -48,7 +52,7 @@ const Container = styled.button`
   cursor: pointer;
 
   &:focus {
-  border: none;
-  outline: none;
-}
-`
+    border: none;
+    outline: none;
+  }
+`;
