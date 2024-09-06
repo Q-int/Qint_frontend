@@ -31,6 +31,7 @@ export const Option = ({
       } else {
         setIsClicked(true);
         selected(id);
+        console.log(111);
       }
     }
   };
