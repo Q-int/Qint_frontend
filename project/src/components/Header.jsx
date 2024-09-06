@@ -71,6 +71,7 @@ const Mypagebtn = styled.div`
   background-color: transparent;
   font-size: 1.9vh;
   font-weight: 400;
+  white-space: nowrap;
   cursor: pointer;
   ${({ pathname }) =>
     pathname.includes("mypage")
