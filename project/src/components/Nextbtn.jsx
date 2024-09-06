@@ -50,6 +50,8 @@ const Container = styled.button`
   border: none;
   font-size: 1.8vh;
   cursor: pointer;
+  white-space: nowrap;
+  min-width: 60px;
 
   &:focus {
     border: none;

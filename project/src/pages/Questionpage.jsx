@@ -435,6 +435,7 @@ const Contentboxcontainer = styled.div`
 `;
 
 const Contentbox = styled.div`
+box-sizing: border-box;
   width: 78vw;
   height: 15.7vh;
   background: #ffffff;
@@ -444,6 +445,7 @@ const Contentbox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 2vw;
 `;
 
 const Optionscontainer = styled.div`

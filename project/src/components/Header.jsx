@@ -71,6 +71,7 @@ const Mypagebtn = styled.div`
   background-color: transparent;
   font-size: 1.9vh;
   font-weight: 400;
+  white-space: nowrap;
   cursor: pointer;
   ${({ pathname }) =>
     pathname.includes("mypage")
@@ -94,6 +95,8 @@ const Loginbtn = styled.button`
   border-radius: 0.5vh;
   margin-right: 9.8vw;
   cursor: pointer;
+  white-space: nowrap;
+  min-width: 43px;
 
   &:focus {
     border: none;

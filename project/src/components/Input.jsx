@@ -58,15 +58,15 @@ const InputContainer = styled.input`
         ? "#ff3951"
         : "#00eda6";
     }}
-    solid 1px;
+    solid 0.1vw;
   background-color: #f4f4f4;
-  padding: 16.5px 0 16.5px 13px;
-  border-radius: 5px;
-  width: 385px;
+  padding: 2vh 0 2vh 1.2vw;
+  border-radius: 1vh;
+  width: 19.8vw;
   outline: none;
-  font-size: 16px;
+  font-size: 1.8vh;
   &::placeholder {
-    font-size: 16px;
+    font-size: 1.8vh;
     color: #b4b4b4;
   }
   &:focus {
@@ -79,13 +79,13 @@ const InputContainer = styled.input`
           ? "#ff3951"
           : "#00eda6";
       }}
-      solid 1px;
+      solid 0.1vw;
   }
 `;
 
 const InputFakeContainer = styled.div`
-  width: 398px;
-  height: 51px;
+  width: 20.7vw;
+  height: 5.5vh;
   position: relative;
 `;
 
@@ -93,8 +93,8 @@ const PasswordEye = styled.button`
   position: absolute;
   border: none;
   background-color: transparent;
-  top: 8.7px;
-  right: 13px;
+  top: 1.1vh;
+  right: 1vw;
 
   &:focus {
     outline: none;
@@ -103,12 +103,12 @@ const PasswordEye = styled.button`
 `;
 
 const InputExplain = styled.div`
-  font-size: 10px;
+  font-size: 1.1vh;
   color: ${({ $isError }) => ($isError ? "#ff3951" : "#00eda6")};
 `;
 
 const ExplainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.1vh;
 `;

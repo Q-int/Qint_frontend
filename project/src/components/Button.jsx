@@ -49,9 +49,9 @@ const FirstBtn = styled.button`
   align-items: center;
   color: ${({ fontColor1 }) => fontColor1};
   font-weight: ${({ fontWeight }) => fontWeight};
-  width: 398px;
-  height: 52px;
-  font-size: 16px;
+  width: 20.7vw;
+  height: 5.7vh;
+  font-size: 2.02vh;
 `;
 
 const SecondBtn = styled.button`
@@ -64,7 +64,7 @@ const SecondBtn = styled.button`
   align-items: center;
   color: ${({ fontColor2 }) => fontColor2};
   font-weight: ${({ fontWeight }) => fontWeight};
-  width: 398px;
-  height: 52px;
-  font-size: 16px;
+  width: 20.7vw;
+  height: 5.4vh;
+  font-size: 2.02vh;
 `;
