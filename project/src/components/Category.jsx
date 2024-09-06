@@ -34,7 +34,7 @@ const Container = styled.div`
   width: 18vw;
   height: 35.7vh;
   box-sizing: border-box;
-  border : ${props => props.isClicked ? "0.01vw solid #00EDA6" : "0.01vw solid #000"};
+  outline : ${props => props.isClicked ? "0.3vw solid #00EDA6" : "0.01vw solid #000"};
   border-radius: 1.5vh;
   overflow: hidden;
   background-color:#fff;

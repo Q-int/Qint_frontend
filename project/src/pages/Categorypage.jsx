@@ -42,7 +42,7 @@ export const Categorypage = () => {
     <Container>
       <Categories>
         <Category src={"/images/backend.svg"} alt={"백엔드이미지"} title={"backend"} text={"백엔드에 대해 알아보세요"} onSelect={selectedBack} />
-        <Category src={"/images/frontend.svg"} alt={"프론트엔드이미지"} title={"frontend"} text={"프론트엔드에 대해 알아보세요"} onSelect={selectedFront} />
+        <Category src={"/images/react_image 13.svg"} alt={"프론트엔드이미지"} title={"frontend"} text={"프론트엔드에 대해 알아보세요"} onSelect={selectedFront} />
         <Category src={"/images/flutter.svg"} alt={"플러터이미지"} title={"flutter"} text={"플러터에 대해 알아보세요"} onSelect={selectedFlutter} />
         <Category src={"/images/swift.svg"} alt={"스위프트이미지"} title={"swift"} text={"ios에 대해 알아보세요"} onSelect={selectedIos} />
       </Categories>
