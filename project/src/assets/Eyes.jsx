@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Eyes = ({ width = 24, height = 30, isEye, ...props }) => (
+export const Eyes = ({ width = "1.4vw", height = "3.7vh", isEye, ...props }) => (
   <SvgImg
     width={width}
     height={height}

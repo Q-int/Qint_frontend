@@ -268,14 +268,14 @@ const SignUpContent = styled.div`
 
 const SignUpTitle = styled.h1`
   color: #00eda6;
-  font-size: 35px;
+  font-size: 3.7vh;
 `;
 
 const CodeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  gap: 16px;
+  gap: 1.6vh;
 `;
 
 const InputsContainer = styled.div`
