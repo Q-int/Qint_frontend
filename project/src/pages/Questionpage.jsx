@@ -392,7 +392,7 @@ export const Questionpage = () => {
               mode={mode}
               id={index}
               selected={optionSelect}
-              $selectedOption={selectedOption}
+              selectedOption={selectedOption}
               Qnum={Qnum}
               showEXbtn={showExplainBtn}
               onShowEXbtn={onShowEXbtn}
