@@ -94,6 +94,8 @@ const Loginbtn = styled.button`
   border-radius: 0.5vh;
   margin-right: 9.8vw;
   cursor: pointer;
+  white-space: nowrap;
+  min-width: 43px;
 
   &:focus {
     border: none;
