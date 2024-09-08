@@ -84,8 +84,8 @@ const InputContainer = styled.input`
 `;
 
 const InputFakeContainer = styled.div`
-  width: 20.7vw;
-  height: 5.5vh;
+  width: 21vw;
+  height: 5.8vh;
   position: relative;
 `;
 

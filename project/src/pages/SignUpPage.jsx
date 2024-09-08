@@ -120,7 +120,7 @@ export const SignUpPage = ({ pathname }) => {
   //중복된 이메일인지 확인하기
   const sendBtnClick = () => {
     //Email Api 보내기
-    setEmailColor(false);
+    setEmailColor(true);
     setExplainEmail("중복된 이메일 입니다.");
   };
 
@@ -256,14 +256,16 @@ const SignUpAll = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 45px;
+  gap: 4.8vh;
   height: 100%;
 `;
 
 const SignUpContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 67px;
+  justify-content: center;
+  align-items: center;
+  gap: 7vh;
 `;
 
 const SignUpTitle = styled.h1`
@@ -281,20 +283,20 @@ const CodeContainer = styled.div`
 const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  width: 398px;
-  height: 400px;
+  gap: 5vh;
+  /* width: 27.6vw; */
+  height: 40vh;
 `;
 
 const SendBtn = styled.button`
   cursor: pointer;
-  width: 66px;
-  height: 32px;
-  border-radius: 5px;
+  width: 3.4vw;
+  height: 3.5vh;
+  border-radius: 0.5vh;
   border: none;
   background-color: #00eda6;
   color: #ffffffff;
-  font-size: 14px;
+  font-size: 1.4vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -302,8 +304,8 @@ const SendBtn = styled.button`
 
 const ModalOverlay = styled.div`
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;

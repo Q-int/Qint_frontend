@@ -36,13 +36,13 @@ export const Button = ({
 const BtnContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 0.7vh;
 `;
 
 const FirstBtn = styled.button`
   cursor: pointer;
   background-color: ${({ backColor1 }) => backColor1};
-  border-radius: 8px;
+  border-radius: 0.8vh;
   border: none;
   display: flex;
   justify-content: center;
@@ -57,7 +57,7 @@ const FirstBtn = styled.button`
 const SecondBtn = styled.button`
   cursor: pointer;
   background-color: ${({ backColor2 }) => backColor2};
-  border-radius: 8px;
+  border-radius: 0.8vh;
   border: none;
   display: flex;
   justify-content: center;
