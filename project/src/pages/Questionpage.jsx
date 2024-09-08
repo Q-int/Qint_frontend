@@ -383,6 +383,7 @@ export const Questionpage = () => {
       <Conrainer>
         <Contentboxcontainer>
           <Contentbox>{Questions[Qnum].contents}</Contentbox>
+          <QnumText>{Qnum + 1}/15</QnumText>
         </Contentboxcontainer>
         <Optionscontainer>
           {Questions[Qnum].options.map((option, index) => (
@@ -430,8 +431,10 @@ const Contentboxcontainer = styled.div`
   height: 25vh;
   background-color: #f4f4f4;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1.5vh;
 `;
 
 const Contentbox = styled.div`
@@ -478,4 +481,11 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1;
+`;
+
+const QnumText = styled.p`
+  margin: 0;
+  font-size: 18px;
+  color: #50555C;
+  font-weight: 400;
 `;
