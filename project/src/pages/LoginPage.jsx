@@ -82,29 +82,29 @@ export const LoginPage = () => {
 const LoginContents = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 33px;
+  gap: 3.4vh;
 `;
 
 const LoginTitleAll = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 1.2vh;
 `;
 
 const InputAll = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 54px;
+  gap: 5.5vh;
 `;
 
 const LoginTitle = styled.div`
-  font-size: 30px;
+  font-size: 3.1vh;
   font-weight: 700;
   color: #00eda6;
 `;
 
 const LoginSubTitle = styled.div`
-  font-size: 12px;
+  font-size: 1.3vh;
   color: #b4b4b4;
 `;
 
@@ -120,13 +120,13 @@ const LoginBackGround = styled.div`
 
 const LoginModal = styled.div`
   background-color: #ffffff;
-  width: 489.74px;
-  height: 610px;
-  border-radius: 10px;
+  width: 25.5vw;
+  height: 62vh;
+  border-radius: 1vh;
   box-shadow: 0 0 30 0 rgb(115, 115, 115, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  gap: 8.3vh;
 `;
