@@ -12,6 +12,8 @@ export const Option = ({
   Qnum,
   onShowEXbtn,
   onEXQ,
+  isGrading,
+  onGrading,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const { pathname } = useLocation();
@@ -27,7 +29,8 @@ export const Option = ({
       if (isClicked) {
         onShowEXbtn(true);
         onEXQ(Question);
-      } else {
+        onGrading(true);
+      } else if(!isGrading){
         setIsClicked(true);
         selected(id);
         console.log(111);
