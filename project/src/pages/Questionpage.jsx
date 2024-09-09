@@ -372,8 +372,10 @@ export const Questionpage = () => {
 
   useEffect(() => {
     if (localStorage.getItem("next") == "true") {
-      setQnum(location.state.nQ + 1);
+      setQnum(parseInt(localStorage.getItem("Qnum")) + 1);
       localStorage.setItem("next", false);
+    } else if(localStorage.getItem("next") == "ing") {
+      setQnum(parseInt(localStorage.getItem("Qnum")))
     }
   });
 

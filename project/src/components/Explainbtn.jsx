@@ -4,8 +4,9 @@ import styled from "styled-components";
 export const Explainbtn = ({ showEXbtn, EXQ, Qnum }) => {
   const navigate = useNavigate();
   const EXbtnClickHandle = () => {
-    navigate("/explain", { state: { EXQ: EXQ } });
-    localStorage.setItem("next", true);
+    navigate("/explain", { state: { EXQ: EXQ, Qnum: Qnum} });
+    localStorage.setItem("next", 'ing');
+    localStorage.setItem("Qnum", Qnum);
   };
 
   return (

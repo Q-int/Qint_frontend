@@ -17,8 +17,10 @@ export const Nextbtn = ({
   const nextQuestion = () => {
     if (pathname.includes("question")) {
       if (Qnum < 14) {
+        if(localStorage.getItem("next") == "ing"){
+          localStorage.setItem("next", false);
+        }
         onNextQ(++Qnum);
-        localStorage.setItem("Qnum", Qnum);
       } else {
         setQModalState(true);
       }
@@ -27,9 +29,9 @@ export const Nextbtn = ({
         onNextWQ(++WQnum);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    } else if (pathname.includes("explain")) {
-      const nQ = parseInt(localStorage.getItem("Qnum"));
-      navigate("/question", { state: { nQ: nQ } });
+    } else if (pathname.includes("explain")) {;
+      navigate("/question");
+      localStorage.setItem("next", true);
     }
   };
 

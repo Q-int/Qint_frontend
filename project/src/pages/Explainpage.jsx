@@ -13,11 +13,13 @@ export const Explainpage = () => {
 		"commentay" : "어쩌구 저쩌구 해서 쨌든 그냥 니가 틀리고 내가 맞음 어쩔팁이",  
 		"is_correct" : true
 })
+const [Qnum, setQnum] = useState();
 
 const location = useLocation();
 
 useEffect(() => {
   setQuestion(location.state.EXQ);
+  setQnum(location.state.Qnum);
 })
 
   return(
@@ -27,6 +29,7 @@ useEffect(() => {
         <Contentbox>
           {Question.commentay}
         </Contentbox>
+        <QnumText>{Qnum + 1}/15</QnumText>
       </Contentboxcontainer>
       <Explaincontainer>
         <Option option={Question.answer_text} rw={Question.is_correct}/>
@@ -53,8 +56,10 @@ const Contentboxcontainer = styled.div`
   height: 25vh;
   background-color: #f4f4f4;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1.5vh
 `
 
 const Contentbox = styled.div`
@@ -98,3 +103,10 @@ const Buttoncontainer = styled.div`
   justify-content: flex-end;
   padding-right: 11.7vw;
 `
+
+const QnumText = styled.p`
+  margin: 0;
+  font-size: 18px;
+  color: #50555C;
+  font-weight: 400;
+`;
