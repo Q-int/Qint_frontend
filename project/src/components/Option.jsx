@@ -10,7 +10,6 @@ export const Option = ({
   selected,
   selectedOption,
   Qnum,
-  showEXbtn,
   onShowEXbtn,
   onEXQ,
 }) => {

@@ -10,6 +10,7 @@ export const Nextbtn = ({
   WQnum,
   qModalState,
   setQModalState,
+  onShowEXbtn
 }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -21,6 +22,7 @@ export const Nextbtn = ({
           localStorage.setItem("next", false);
         }
         onNextQ(++Qnum);
+        onShowEXbtn(false);
       } else {
         setQModalState(true);
       }

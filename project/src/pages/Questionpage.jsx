@@ -397,7 +397,6 @@ export const Questionpage = () => {
               selected={optionSelect}
               selectedOption={selectedOption}
               Qnum={Qnum}
-              showEXbtn={showExplainBtn}
               onShowEXbtn={onShowEXbtn}
               onEXQ={onEXQ}
             />
@@ -410,6 +409,7 @@ export const Questionpage = () => {
             onNextQ={nextQuestion}
             qModalState={qModalState}
             setQModalState={setQModalState}
+            onShowEXbtn={onShowEXbtn}
           />
         </Buttoncontainer>
         {qModalState && (
