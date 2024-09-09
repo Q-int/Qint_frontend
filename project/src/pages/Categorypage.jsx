@@ -16,6 +16,7 @@ export const Categorypage = () => {
 
   const startHandle = () => {
     navigate('/question');
+    localStorage.setItem("next", false);
   }
 
 
