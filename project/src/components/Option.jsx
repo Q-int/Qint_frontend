@@ -77,6 +77,6 @@ const Container = styled.div`
   padding-left: 2.9vw;
   font-size: 2.7vh;
   font-weight: 400;
-  border: ${(props) =>
-    props.$mode ? "none" : props.$rw ? "1px solid green" : "1px solid red"};
+  outline: ${(props) =>
+    props.$mode ? "none" : props.$rw ? "0.2vw solid #68F665" : "0.2vw solid #FF3951"};
 `;
