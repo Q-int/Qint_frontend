@@ -72,6 +72,7 @@ font-size: 2.75vh;
 display: flex;
 align-items: center;
 justify-content: center;
+margin-top: 3.2vh
 `
 
 const Explaincontainer = styled.div`
@@ -106,7 +107,7 @@ const Buttoncontainer = styled.div`
 
 const QnumText = styled.p`
   margin: 0;
-  font-size: 18px;
+  font-size: 2vh;
   color: #50555C;
   font-weight: 400;
 `;

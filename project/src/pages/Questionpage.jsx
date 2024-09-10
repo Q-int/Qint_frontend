@@ -446,7 +446,7 @@ const Contentboxcontainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5vh;
+  gap: 1vh;
 `;
 
 const Contentbox = styled.div`
@@ -460,7 +460,8 @@ box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2vw;
+  padding: 0.2vw;
+  margin-top: 3.2vh
 `;
 
 const Optionscontainer = styled.div`
@@ -497,7 +498,7 @@ const ModalOverlay = styled.div`
 
 const QnumText = styled.p`
   margin: 0;
-  font-size: 18px;
+  font-size: 2vh;
   color: #50555C;
   font-weight: 400;
 `;
