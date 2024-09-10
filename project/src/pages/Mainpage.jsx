@@ -83,6 +83,7 @@ const Text = styled.p`
   font-size: 4.5vh;
   text-align: left;
   font-weight: 800;
+  white-space:nowrap;
 `;
 
 const Startbtn = styled.button`
@@ -96,6 +97,8 @@ const Startbtn = styled.button`
   cursor: pointer;
   margin-top: 50.7vh;
   margin-right: 8.5vw;
+  white-space:nowrap;
+  min-width: 90px;
 
   &:focus {
     border: none;

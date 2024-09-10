@@ -26,6 +26,8 @@ const Container = styled.button`
   font-size: 1.8vh;
   display: ${(props) => (props.$display ? "block" : "none")};
   cursor: pointer;
+  white-space:nowrap;
+  min-width: 32px;
 
   &:focus {
     border: none;

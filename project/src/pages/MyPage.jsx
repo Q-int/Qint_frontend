@@ -84,6 +84,7 @@ font-size: 2.7vh;
 color: #787878;
 font-weight: 600;
 margin-left: 1vw;
+white-space:nowrap;
 `
 
 const Percenttextbox = styled.div`
@@ -104,12 +105,14 @@ const Greentext = styled.p`
 font-size: 2.3vh;
 color: #5BFF57;
 font-weight:700;
+white-space:nowrap;
 `
 
 const Redtext = styled.p`
 font-size: 2.3vh;
 color: #FF3263;
 font-weight:700;
+white-space:nowrap;
 `
 
 const ShowWQbtn = styled.button`
@@ -127,6 +130,7 @@ color: #50555C;
 font-weight: 700;
 border: none;
 cursor: pointer;
+white-space:nowrap;
 
 &:focus {
   border: none;
@@ -137,6 +141,7 @@ cursor: pointer;
 const Intertext1 = styled.h1`
 font-size: 4vh;
 letter-spacing: -0.32%;
+white-space:nowrap;
 `
 
 const Intertext3 = styled.h1`
@@ -144,6 +149,7 @@ font-weight: 500;
 font-size: 2.8vh;
 letter-spacing: -0.32%;
 color: #999999;
+white-space:nowrap;
 `
 
 const Logoutbtn = styled.h1`
@@ -151,6 +157,7 @@ font-size: 2.75vh;
 letter-spacing: -0.32%;
 font-weight: 500;
 cursor: pointer;
+white-space:nowrap;
 `
 
 const Text = styled.p`
@@ -158,6 +165,7 @@ font-size: 1.4vh;
 line-height: 0.1vh;
 letter-spacing: -0.32%;
 color: #6C6B6B;
+white-space:nowrap;
 `
 
 const PercentText = styled.p`
