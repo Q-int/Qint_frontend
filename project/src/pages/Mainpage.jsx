@@ -5,15 +5,19 @@ import { useState } from "react";
 
 export const Main = () => {
   const navigate = useNavigate();
-  
+
   const startbtnHandle = () => {
-    navigate('/category');
-  }
+    navigate("/category");
+  };
+
+  const imgSlideClick = () => {
+    navigate("/description");
+  };
 
   return (
     <Container>
       <Header />
-      <Headimg></Headimg>
+      <Headimg onClick={imgSlideClick}></Headimg>
       <Mainbox>
         <Box1>
           <Logobox>
@@ -46,7 +50,7 @@ const Headimg = styled.img.attrs({
   src: "/images/headerimg.jpg",
   alt: "이미지",
 })`
-width: 100vw;
+  width: 100vw;
 `;
 const Logobox = styled.div`
   display: flex;
@@ -57,7 +61,7 @@ const Logobox = styled.div`
 `;
 
 const Mainbox = styled.div`
-box-sizing: border-box;
+  box-sizing: border-box;
   height: 72.8vh;
   width: 100vw;
   display: flex;
