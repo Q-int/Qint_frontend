@@ -49,7 +49,7 @@ export const Mypage = () => {
                   <Intertext3>끝내시려면 로그아웃 하세요</Intertext3>
                   <Logoutbtn onClick={logoutbtnHandle}>로그아웃</Logoutbtn>
                 </Box2>
-                <Text>문제 오류 신고 010-9382-0145</Text>
+                <Text>문제 오류 신고 pjylove08@dsm.hs.kr</Text>
             </Box4>
           </Box1>
         </Container>
