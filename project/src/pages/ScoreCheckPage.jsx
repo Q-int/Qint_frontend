@@ -62,7 +62,7 @@ const ScoreModal = styled.div`
 
 const ScoreTotal = styled.div`
   color: #000000;
-  font-size: 3.5vh;
+  font-size: 3vh;
 `;
 
 const ScoreTotalContents = styled.div`
