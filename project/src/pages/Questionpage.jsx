@@ -14,6 +14,7 @@ export const Questionpage = () => {
   const [showExplainBtn, setShowExplainBtn] = useState(false);
   const [EXQ, setEXQ] = useState();
   const [qModalState, setQModalState] = useState(false);
+  const [isGrading, setIsGrading] = useState(false);
 
   const Questions = [
     {
@@ -370,6 +371,10 @@ export const Questionpage = () => {
     setEXQ(Q);
   };
 
+  const onGrading = (tf) => {
+    setIsGrading(tf);
+  }
+
   useEffect(() => {
     if (localStorage.getItem("next") == "true") {
       setQnum(parseInt(localStorage.getItem("Qnum")) + 1);
@@ -378,6 +383,9 @@ export const Questionpage = () => {
       setQnum(parseInt(localStorage.getItem("Qnum")))
     }
   });
+  useEffect(() => {
+    setIsGrading(false);
+  }, [Qnum])
 
   return (
     <>
@@ -399,6 +407,8 @@ export const Questionpage = () => {
               Qnum={Qnum}
               onShowEXbtn={onShowEXbtn}
               onEXQ={onEXQ}
+              isGrading={isGrading}
+              onGrading={onGrading}
             />
           ))}
         </Optionscontainer>
