@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Eyes = ({ width = "1.4vw", height = "3.7vh", isEye, ...props }) => (
+export const Eyes = ({
+  width = "1.4vw",
+  height = "3.7vh",
+  isEye,
+  ...props
+}) => (
   <SvgImg
     width={width}
     height={height}
-    viewBox="0 0 24 18"
+    viewBox="0 0 25 18"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
