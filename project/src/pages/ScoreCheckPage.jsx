@@ -1,16 +1,16 @@
-import styled from "styled-components";
-import { Button } from "../components/Button";
-import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+import { Button } from '../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 export const ScoreCheckPage = () => {
   const navigate = useNavigate();
 
   const mainClick = () => {
-    navigate("/");
+    navigate('/');
   };
 
   const MyPageClick = () => {
-    navigate("/mypage");
+    navigate('/mypage');
   };
 
   return (
@@ -50,7 +50,7 @@ const ModalBack = styled.div`
 `;
 
 const ScoreModal = styled.div`
-  width: 23vw;
+  width: 28vw;
   height: 53vh;
   border-radius: 1vw;
   display: flex;

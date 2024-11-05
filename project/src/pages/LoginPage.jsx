@@ -1,23 +1,23 @@
-import styled from "styled-components";
-import { Input } from "../components/Input";
-import { Button } from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import styled from 'styled-components';
+import { Input } from '../components/Input';
+import { Button } from '../components/Button';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
 
   const LoginClearClick = () => {
-    navigate("/category");
+    navigate('/category');
   };
 
   const SignUpClick = () => {
-    navigate("/SignUp");
+    navigate('/SignUp');
   };
 
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const { email, password } = inputs;
@@ -31,7 +31,7 @@ export const LoginPage = () => {
   };
 
   useEffect(() => {
-    if (email !== "" && password != "") {
+    if (email !== '' && password != '') {
       console.log(inputs);
     }
   }, [email, password]);
@@ -120,7 +120,7 @@ const LoginBackGround = styled.div`
 
 const LoginModal = styled.div`
   background-color: #ffffff;
-  width: 25.5vw;
+  width: 29.5vw;
   height: 62vh;
   border-radius: 1vh;
   box-shadow: 0 0 30 0 rgb(115, 115, 115, 0.25);
