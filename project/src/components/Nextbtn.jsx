@@ -10,30 +10,30 @@ export const Nextbtn = ({
   WQnum,
   qModalState,
   setQModalState,
-  onShowEXbtn
+  onShowEXbtn,
 }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const nextQuestion = () => {
-    if (pathname.includes("question")) {
+    if (pathname.includes('question')) {
       if (Qnum < 14) {
-        if(localStorage.getItem("next") == "ing"){
-          localStorage.setItem("next", false);
+        if (localStorage.getItem('next') == 'ing') {
+          localStorage.setItem('next', false);
         }
         onNextQ(++Qnum);
         onShowEXbtn(false);
       } else {
         setQModalState(true);
       }
-    } else if (pathname.includes("wrongs")) {
+    } else if (pathname.includes('wrongs')) {
       if (WQnum < WQlength - 1) {
         onNextWQ(++WQnum);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-    } else if (pathname.includes("explain")) {;
-      navigate("/question");
-      localStorage.setItem("next", true);
+    } else if (pathname.includes('explain')) {
+      navigate('/question');
+      localStorage.setItem('next', true);
     }
   };
 
