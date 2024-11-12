@@ -17,6 +17,8 @@ export const Explainpage = ({ qModalState, setQModalState }) => {
 
   const location = useLocation();
 
+  const [isModal, setIsModal] = useState(false)
+
   useEffect(() => {
     setQuestion(location.state.EXQ);
     setQnum(location.state.Qnum);
@@ -34,8 +36,13 @@ export const Explainpage = ({ qModalState, setQModalState }) => {
         <Explainbox>그거 아닌데 뭔소리징</Explainbox>
       </Explaincontainer>
       <Buttoncontainer>
-        <Nextbtn qModalState={qModalState} setQModalState={setQModalState} />
+        <Nextbtn qModalState={qModalState} setQModalState={setQModalState} setIsModal={setIsModal} Qnum={Qnum}/>
       </Buttoncontainer>
+      {isModal && (
+          <ModalOverlay>
+            <ScoreCheckPage/>
+          </ModalOverlay>
+        )}
     </Container>
   );
 };
