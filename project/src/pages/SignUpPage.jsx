@@ -112,19 +112,15 @@ export const SignUpPage = () => {
   const sendBtnClick = async () => {
     //api 이메일 중복
     await apiEmail({ setEmailColor, setExplainEmail, email });
-    await apiCodeSend({ email, setGetCode });
+    await apiCodeSend({ email });
   };
 
   const [getCode, setGetCode] = useState(false);
   const [explainCode, setExplainCode] = useState('');
 
   const codeCheck = () => {
-    apiCodeCheck({ email, authCode: code, setExplainCode });
+    apiCodeCheck({ email, authCode: code, setExplainCode, setGetCode });
   };
-
-  // useEffect(() => {
-  //   codeCheck();
-  // }, [code]);
 
   const [modal, setModal] = useState(false);
 
