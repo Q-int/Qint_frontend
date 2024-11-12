@@ -119,7 +119,7 @@ export const SignUpPage = () => {
   const [explainCode, setExplainCode] = useState('');
 
   const codeCheck = () => {
-    apiCodeCheck({ email, authCode: code, setExplainCode, setGetCode });
+    apiCodeCheck({ email, auth_code: code, setExplainCode, setGetCode });
   };
 
   const [modal, setModal] = useState(false);

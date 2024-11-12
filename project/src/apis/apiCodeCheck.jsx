@@ -2,14 +2,14 @@ import { instance } from './instance';
 
 export const apiCodeCheck = async ({
   email,
-  authCode,
+  auth_code,
   setExplainCode,
   setGetCode,
 }) => {
   try {
     const response = await instance.post('/email/check-authcode', {
       email,
-      authCode,
+      auth_code,
     });
     if (response.status === 200) {
       const { isVerified } = response.data;
