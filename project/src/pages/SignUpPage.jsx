@@ -111,8 +111,10 @@ export const SignUpPage = () => {
   //중복된 이메일인지 확인하기
   const sendBtnClick = async () => {
     //api 이메일 중복
-    await apiEmail({ setEmailColor, setExplainEmail, email });
-    await apiCodeSend({ email });
+    const success = await apiEmail({ setEmailColor, setExplainEmail, email });
+    if (success) {
+      await apiCodeSend({ email });
+    }
   };
 
   const [getCode, setGetCode] = useState(false);

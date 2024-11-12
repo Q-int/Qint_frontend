@@ -7,17 +7,19 @@ export const apiEmail = async ({ email, setEmailColor, setExplainEmail }) => {
       email,
     });
     if (response.status === 200) {
-      setEmailColor(false);
-      setExplainEmail('사용 가능한 이메일 입니다.');
+      const { success } = response.data;
+      if (success) {
+        setEmailColor(false);
+        setExplainEmail('사용 가능한 이메일 입니다.');
+      } else {
+        setEmailColor(true);
+        setExplainEmail('이미 가입된 이메일입니다.');
+      }
+      return success;
     }
   } catch (error) {
     if (error.response) {
-      if (error.response.status === 409) {
-        setEmailColor(true);
-        setExplainEmail('이미 가입된 이메일입니다.');
-      } else {
-        alert('회원가입 요청 실패', error);
-      }
+      alert('회원가입 요청 실패', error);
     }
   }
 };
