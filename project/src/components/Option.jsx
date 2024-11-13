@@ -33,7 +33,6 @@ export const Option = ({
       } else if(!isGrading){
         setIsClicked(true);
         selected(id);
-        console.log(111);
       }
     }
   };
