@@ -4,6 +4,7 @@ import { Header } from "../components/Header"
 import { useState } from "react"
 import { Startbtn } from "../components/Startbtn"
 import { useNavigate } from "react-router-dom"
+import { categoryPost } from "../apis/categoryPost"
 
 export const Categorypage = () => {
 
@@ -11,8 +12,9 @@ export const Categorypage = () => {
 
   const navigate = useNavigate();
 
-  const startHandle = () => {
-    navigate('/question');
+  const startHandle = async () => {
+    const Questions = await categoryPost(categoryArray);
+    navigate('#/question', {state: {Questions: Questions}});
     localStorage.setItem("next", false);
   }
 
