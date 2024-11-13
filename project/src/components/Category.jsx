@@ -1,16 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components"
 
-export const Category =  ({src, alt, title, text, onSelect}) => {
+export const Category =  ({src, alt, title, text, onSelect, category}) => {
 
   const [isClicked, setIsClicked] = useState(false);
 
   const handleSelect = () => {
     if(isClicked) {
-      onSelect(false);
+      onSelect(category);
       setIsClicked(false);
     } else {
-      onSelect(true);
+      onSelect(category);
       setIsClicked(true);
     }
   }
