@@ -15,8 +15,8 @@ export const Questionpage = () => {
   const [EXQ, setEXQ] = useState();
   const [qModalState, setQModalState] = useState(false);
   const [isGrading, setIsGrading] = useState(false);
-
-  const Questions = [
+  const [Questions, setQuestions] = useState({
+    questions : [
     {
       question_id: 1,
       contents: "π는 제대로 기술한 것은?",
@@ -350,7 +350,7 @@ export const Questionpage = () => {
         },
       ],
     },
-  ];
+  ]});
 
   const mode = true;
 
@@ -386,17 +386,22 @@ export const Questionpage = () => {
   useEffect(() => {
     setIsGrading(false);
   }, [Qnum])
+  useEffect(() => {
+    if(location.state.Questions) {
+      setQuestions(location.state.Questions);
+    }
+  })
 
   return (
     <>
       <Header />
       <Conrainer>
         <Contentboxcontainer>
-          <Contentbox>{Questions[Qnum].contents}</Contentbox>
+          <Contentbox>{Questions.questions[Qnum].contents}</Contentbox>
           <QnumText>{Qnum + 1}/15</QnumText>
         </Contentboxcontainer>
         <Optionscontainer>
-          {Questions[Qnum].options.map((option, index) => (
+          {Questions.questions[Qnum].options.map((option, index) => (
             <Option
               key={index}
               option={option}
