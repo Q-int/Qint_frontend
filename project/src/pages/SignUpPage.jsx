@@ -1,45 +1,36 @@
-import { styled } from "styled-components";
-import { Header } from "./../components/Header";
-import { Input } from "../components/Input";
-import { Inputs } from "../components/Inputs";
-import { useEffect, useState } from "react";
-import { Button } from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import { PasswordRegex } from "../components/Regex";
-import { EmailRegex } from "../components/Regex";
-import { useLocation } from "react-router-dom";
-import { LoginPage } from "./LoginPage";
+import { styled } from 'styled-components';
+import { Header } from './../components/Header';
+import { Input } from '../components/Input';
+import { useEffect, useState } from 'react';
+import { Button } from '../components/Button';
+import { useNavigate } from 'react-router-dom';
+import { PasswordRegex } from '../components/Regex';
+import { EmailRegex } from '../components/Regex';
+import { LoginPage } from './LoginPage';
+import { apiEmail } from '../apis/apiEmail';
+import { instance } from '../apis/instance';
+import { apiCodeSend } from '../apis/apiCodeSend';
+import { apiCodeCheck } from '../apis/apiCodeCheck';
+import { apiSignUp } from '../apis/apiSignUp';
 
-export const SignUpPage = ({ pathname }) => {
-  const navigate = useNavigate();
-
+export const SignUpPage = () => {
   //api가 맞나, 클릭했을 때 router 설정
-  const signupClick = () => {
-    //인증코드가 일치할 때 Login페이지로 넘어가게하기
-    if (
-      getCode === false &&
-      getPswd1 === false &&
-      getPswd2 === false &&
-      emailColor === false
-    ) {
-      setModal(true);
-    }
-
-    // apiCheckCode();
+  const signupClick = async () => {
+    apiSignUp({ email, password: password1, setModal });
   };
 
   const loginPathClick = () => {
     setModal(true);
   };
 
-  const [explainPswd1, setExplainPswd1] = useState("");
-  const [explainPswd2, setExplainPswd2] = useState("");
+  const [explainPswd1, setExplainPswd1] = useState('');
+  const [explainPswd2, setExplainPswd2] = useState('');
 
   const [inputs, setInputs] = useState({
-    email: "",
-    code: "",
-    password1: "",
-    password2: "",
+    email: '',
+    code: '',
+    password1: '',
+    password2: '',
   });
 
   const { email, code, password1, password2 } = inputs;
@@ -51,7 +42,7 @@ export const SignUpPage = ({ pathname }) => {
 
   const passwordCheck1 = () => {
     if (password1 !== password2) {
-      setExplainPswd1("비밀번호가 다릅니다. 다시 입력하세요.");
+      setExplainPswd1('비밀번호가 다릅니다. 다시 입력하세요.');
       setGetPswd1(true);
     } else {
       setGetPswd1(false);
@@ -66,7 +57,7 @@ export const SignUpPage = ({ pathname }) => {
     if (!PasswordRegex.test(inputs.password1)) {
       //비밀번호 형식이 잘못 되었을 때
       setExplainPswd2(
-        "영어, 숫자, 특수기호를 모두 한 개 이상 포함한 8~64 문자 사이의 비밀번호"
+        '영어, 숫자, 특수기호를 모두 한 개 이상 포함한 8~64 문자 사이의 비밀번호'
       );
       setGetPswd2(true);
     } else {
@@ -88,7 +79,7 @@ export const SignUpPage = ({ pathname }) => {
 
   //객체에 회원가입 내용 보내기
   useEffect(() => {
-    if (email !== "" && code !== "" && password1 !== "" && password2 !== "") {
+    if (email !== '' && code !== '' && password1 !== '' && password2 !== '') {
       //signup의 내용이 공백이 아닐 때
       if (passwordCheck1() && passwordCheck2()) {
         //비밀번호 형식에 맞는지 확인한다.
@@ -100,13 +91,13 @@ export const SignUpPage = ({ pathname }) => {
   // 아래 내용은 Email style, api에 대한 내용입니다.
   const [getUnion, setGetUnion] = useState(false);
 
-  const [explainEmail, setExplainEmail] = useState("");
+  const [explainEmail, setExplainEmail] = useState('');
   const [emailColor, setEmailColor] = useState(false);
 
   const emailCheck = (e) => {
     //이메일 형식이 잘못되었을 때
     if (!EmailRegex.test(inputs.email)) {
-      setExplainEmail("이메일 형식이 일치하지 않습니다.");
+      setExplainEmail('이메일 형식이 일치하지 않습니다.');
       setEmailColor(true);
     } else {
       setEmailColor(false);
@@ -118,40 +109,20 @@ export const SignUpPage = ({ pathname }) => {
   }, [email]);
 
   //중복된 이메일인지 확인하기
-  const sendBtnClick = () => {
-    //Email Api 보내기
-    setEmailColor(true);
-    setExplainEmail("중복된 이메일 입니다.");
+  const sendBtnClick = async () => {
+    //api 이메일 중복
+    const success = await apiEmail({ setEmailColor, setExplainEmail, email });
+    if (success) {
+      await apiCodeSend({ email });
+    }
   };
-
-  // //Email Explain 내용입니다. API 확인하고 중복이 있는지 확인한다.
-  // useEffect(() => {
-  //   sendBtnClick();
-  // }, [emailColor]);
 
   const [getCode, setGetCode] = useState(false);
-  const [explainCode, setExplainCode] = useState("");
-
-  //인증코드가 맞는지 아닌지 받아오기
-  const sendObject = () => {
-    setGetCode(false);
-  };
+  const [explainCode, setExplainCode] = useState('');
 
   const codeCheck = () => {
-    sendObject();
-    if (getCode === true) {
-      setExplainCode("인증코드가 일치하지 않습니다.");
-    } else {
-      setExplainCode("인증코드가 일치합니다.");
-    }
-    // setExplainCode(
-    //   getCode ? "인증코드가 일치합니다." : "인증코드가 일치하지 않습니다."
-    // );
+    apiCodeCheck({ email, auth_code: code, setExplainCode, setGetCode });
   };
-
-  useEffect(() => {
-    codeCheck();
-  }, [getCode]);
 
   const [modal, setModal] = useState(false);
 
@@ -194,6 +165,7 @@ export const SignUpPage = ({ pathname }) => {
                   errorMsg={explainCode}
                   successMsg={explainCode}
                 />
+                <SendBtn onClick={codeCheck}>check</SendBtn>
               </CodeContainer>
               <Input
                 placeholder="비밀번호"
@@ -212,7 +184,7 @@ export const SignUpPage = ({ pathname }) => {
                 name="password2"
                 value={password2}
                 onChange={onChange}
-                pathname={"/SignUp"}
+                pathname={'/SignUp'}
                 isError={getPswd1}
                 isSignUp
                 errorMsg={explainPswd1}
@@ -285,7 +257,7 @@ const InputsContainer = styled.div`
   flex-direction: column;
   gap: 5vh;
   /* width: 27.6vw; */
-  height: 40vh;
+  /* height: 40vh; */
 `;
 
 const SendBtn = styled.button`
