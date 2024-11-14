@@ -3,7 +3,8 @@ import { Input } from '../components/Input';
 import { Button } from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { instance } from '../apis/instance';
+
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -35,14 +36,23 @@ export const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/auth/login', {
-        email,
-        password,
-      });
+      const response = await instance.post(
+        '/auth/login',
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer eyJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2VoZ25zMDkxOUBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImV4cCI6MTczNDE2MzUwNCwiaWF0IjoxNzMxNTcxNTA0fQ._5IxqM5eU0JG_ii9wvJZrR0A2W51J1MtW6Ybif4p8P4`,
+          },
+        }
+      );
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
+
         navigate('/category');
       }
     } catch (error) {

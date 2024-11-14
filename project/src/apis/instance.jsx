@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://qint.ijw.app/',
+  baseURL: 'http://192.168.1.53:8080',
 });
