@@ -3,13 +3,10 @@ import { Input } from '../components/Input';
 import { Button } from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-
-  const LoginClearClick = () => {
-    navigate('/category');
-  };
 
   const SignUpClick = () => {
     navigate('/SignUp');
@@ -35,6 +32,31 @@ export const LoginPage = () => {
       console.log(inputs);
     }
   }, [email, password]);
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('/auth/login', {
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        const { accessToken, refreshToken } = response.data;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        navigate('/category');
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 401) {
+          alert('이메일 또는 비밀번호가 일치하지 않습니다 401');
+        } else if (error.response.status === 404) {
+          alert('유저를 찾을 수 없습니다. 404');
+        } else {
+          alert('로그인 요청 실패');
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -65,7 +87,7 @@ export const LoginPage = () => {
           <Button
             value1="로그인"
             value2="회원가입하러  가기"
-            onClick1={LoginClearClick}
+            onClick1={handleLogin}
             onClick2={SignUpClick}
             fontColor1="#ffffff"
             fontColor2="#00EDA6"
