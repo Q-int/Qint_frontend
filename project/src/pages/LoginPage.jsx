@@ -3,13 +3,10 @@ import { Input } from '../components/Input';
 import { Button } from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { instance } from '../apis/instance';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-
-  const LoginClearClick = () => {
-    navigate('/category');
-  };
 
   const SignUpClick = () => {
     navigate('/SignUp');
@@ -35,6 +32,40 @@ export const LoginPage = () => {
       console.log(inputs);
     }
   }, [email, password]);
+
+  const handleLogin = async () => {
+    try {
+      const response = await instance.post(
+        '/auth/login',
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer eyJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2VoZ25zMDkxOUBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImV4cCI6MTczNDE2MzUwNCwiaWF0IjoxNzMxNTcxNTA0fQ._5IxqM5eU0JG_ii9wvJZrR0A2W51J1MtW6Ybif4p8P4`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const { accessToken, refreshToken } = response.data;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
+        navigate('/category');
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 401) {
+          alert('이메일 또는 비밀번호가 일치하지 않습니다 401');
+        } else if (error.response.status === 404) {
+          alert('유저를 찾을 수 없습니다. 404');
+        } else {
+          alert('로그인 요청 실패');
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -65,7 +96,7 @@ export const LoginPage = () => {
           <Button
             value1="로그인"
             value2="회원가입하러  가기"
-            onClick1={LoginClearClick}
+            onClick1={handleLogin}
             onClick2={SignUpClick}
             fontColor1="#ffffff"
             fontColor2="#00EDA6"
