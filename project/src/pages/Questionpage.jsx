@@ -15,8 +15,8 @@ export const Questionpage = () => {
   const [EXQ, setEXQ] = useState();
   const [qModalState, setQModalState] = useState(false);
   const [isGrading, setIsGrading] = useState(false);
-
-  const Questions = [
+  const [Questions, setQuestions] = useState({
+    questions : [
     {
       question_id: 1,
       contents: "π는 제대로 기술한 것은?",
@@ -350,9 +350,9 @@ export const Questionpage = () => {
         },
       ],
     },
-  ];
+  ]});
 
-  const mode = true;
+  const mode = false;
 
   const [selectedOption, setSelectedOption] = useState(undefined);
   const optionSelect = (n) => {
@@ -386,25 +386,40 @@ export const Questionpage = () => {
   useEffect(() => {
     setIsGrading(false);
   }, [Qnum])
+  const getQuestion = async () => {
+    const q = location.state.Questions;  // location.state가 유효한 상태에서만 실행됨
+    setQuestions(q);
+  };
+  
+  
+  useEffect(() => {
+    // location.state가 존재할 때만 getQuestion 호출
+    if (location.state && location.state.Questions) {
+      getQuestion();
+    }
+  }, [location.state]); // location.state가 변경될 때마다 실행
+  
 
   return (
     <>
       <Header />
       <Conrainer>
         <Contentboxcontainer>
-          <Contentbox>{Questions[Qnum].contents}</Contentbox>
+          <Contentbox>{Questions.questions[Qnum].contents}</Contentbox>
           <QnumText>{Qnum + 1}/15</QnumText>
         </Contentboxcontainer>
         <Optionscontainer>
-          {Questions[Qnum].options.map((option, index) => (
+          {Questions.questions[Qnum].options.map((option, index) => (
             <Option
               key={index}
               option={option}
               mode={mode}
-              id={index}
+              id={option.answer_id}
+              questionId={Questions.questions[Qnum].question_id}
               selected={optionSelect}
               selectedOption={selectedOption}
               Qnum={Qnum}
+              EXQ={EXQ}
               onShowEXbtn={onShowEXbtn}
               onEXQ={onEXQ}
               isGrading={isGrading}

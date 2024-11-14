@@ -9,6 +9,7 @@ export const Nextbtn = ({
   onNextWQ,
   WQnum,
   qModalState,
+  setIsModal,
   setQModalState,
   onShowEXbtn,
 }) => {
@@ -32,8 +33,13 @@ export const Nextbtn = ({
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else if (pathname.includes('explain')) {
-      navigate('/question');
-      localStorage.setItem('next', true);
+      if(Qnum < 14) {
+        navigate('/question');
+        localStorage.setItem('next', true);
+      } else if(Qnum == 14) {
+        setIsModal(true);
+        localStorage.setItem('next', true);
+      }
     }
   };
 

@@ -4,51 +4,42 @@ import { Header } from "../components/Header"
 import { useState } from "react"
 import { Startbtn } from "../components/Startbtn"
 import { useNavigate } from "react-router-dom"
+import { categoryPost } from "../apis/categoryPost"
 
 export const Categorypage = () => {
 
-  const [clickBack, setClickBack] = useState(false);
-  const [clickFront, setClickFront] = useState(false);
-  const [clickIos, setClickIos] = useState(false);
-  const [clickFlutter, setClickFlutter] = useState(false);
+  const [categoryArray, setCategoryArray] = useState([]);
 
   const navigate = useNavigate();
 
-  const startHandle = () => {
-    navigate('/question');
+  const startHandle = async () => {
+    const Questions = await categoryPost(categoryArray);
+    // navigate('#/question', {state: {Questions: Questions}});
     localStorage.setItem("next", false);
   }
 
-
-  const selectedBack = (tf) => {
-    setClickBack(tf);
+  const toggleCategory = (category) => {
+    if (categoryArray.includes(category)) {
+      setCategoryArray((arr)=>arr.filter(x => (x !== category)));
+      console.log(categoryArray);
+    } else {
+      setCategoryArray((arr)=>[...arr, category]);
+      console.log(categoryArray);
+    }
   }
-
-  const selectedFront = (tf) => {
-    setClickFront(tf);
-  }
-
-  const selectedIos = (tf) => {
-    setClickIos(tf);
-  }
-
-  const selectedFlutter = (tf) => {
-    setClickFlutter(tf);
-  }
-  
 
   return(
     <>
       <Header/>
     <Container>
       <Categories>
-        <Category src={"/images/backend.svg"} alt={"백엔드이미지"} title={"backend"} text={"백엔드에 대해 알아보세요"} onSelect={selectedBack} />
-        <Category src={"/images/react_image 13.svg"} alt={"프론트엔드이미지"} title={"frontend"} text={"프론트엔드에 대해 알아보세요"} onSelect={selectedFront} />
-        <Category src={"/images/flutter.svg"} alt={"플러터이미지"} title={"flutter"} text={"플러터에 대해 알아보세요"} onSelect={selectedFlutter} />
-        <Category src={"/images/swift.svg"} alt={"스위프트이미지"} title={"swift"} text={"ios에 대해 알아보세요"} onSelect={selectedIos} />
+        <Category src={"/images/backend.svg"} alt={"백엔드이미지"} title={"backend"} text={"백엔드에 대해 알아보세요"} onSelect={toggleCategory} category={"BACKEND"}/>
+        <Category src={"/images/react_image 13.svg"} alt={"프론트엔드이미지"} title={"frontend"} text={"프론트엔드에 대해 알아보세요"} onSelect={toggleCategory} category={"FRONTEND"}/>
+        <Category src={"/images/flutter.svg"} alt={"플러터이미지"} title={"flutter"} text={"플러터에 대해 알아보세요"} onSelect={toggleCategory} category={"IOS"}/>
+        <Category src={"/images/swift.svg"} alt={"스위프트이미지"} title={"swift"} text={"ios에 대해 알아보세요"} onSelect={toggleCategory} category={"FLUTTER"}/>
       </Categories>
       <Box>
-        {clickBack || clickFront || clickFlutter || clickIos ? <Startbtn clicked={startHandle}/> : <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>}
+        {categoryArray.length > 0 ? <Startbtn clicked={startHandle} categoryArray={categoryArray}/> : <Plstext>카테고리를 한 개 이상 선택해주세요!</Plstext>}
       </Box>
     </Container>
     </>
