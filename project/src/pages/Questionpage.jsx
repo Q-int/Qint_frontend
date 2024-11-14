@@ -352,7 +352,7 @@ export const Questionpage = () => {
     },
   ]});
 
-  const mode = true;
+  const mode = false;
 
   const [selectedOption, setSelectedOption] = useState(undefined);
   const optionSelect = (n) => {
@@ -386,11 +386,19 @@ export const Questionpage = () => {
   useEffect(() => {
     setIsGrading(false);
   }, [Qnum])
+  const getQuestion = async () => {
+    const q = location.state.Questions;  // location.state가 유효한 상태에서만 실행됨
+    setQuestions(q);
+  };
+  
+  
   useEffect(() => {
-    if(location.state.Questions) {
-      setQuestions(location.state.Questions);
+    // location.state가 존재할 때만 getQuestion 호출
+    if (location.state && location.state.Questions) {
+      getQuestion();
     }
-  })
+  }, [location.state]); // location.state가 변경될 때마다 실행
+  
 
   return (
     <>
@@ -406,10 +414,12 @@ export const Questionpage = () => {
               key={index}
               option={option}
               mode={mode}
-              id={index}
+              id={option.answer_id}
+              questionId={Questions.questions[Qnum].question_id}
               selected={optionSelect}
               selectedOption={selectedOption}
               Qnum={Qnum}
+              EXQ={EXQ}
               onShowEXbtn={onShowEXbtn}
               onEXQ={onEXQ}
               isGrading={isGrading}

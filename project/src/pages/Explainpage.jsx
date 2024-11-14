@@ -32,7 +32,7 @@ export const Explainpage = ({ qModalState, setQModalState }) => {
         <QnumText>{Qnum + 1}/15</QnumText>
       </Contentboxcontainer>
       <Explaincontainer>
-        <Option option={Question.answer_text} rw={Question.is_correct} />
+        <Option option={Question.answer_text}/>
         <Explainbox>그거 아닌데 뭔소리징</Explainbox>
       </Explaincontainer>
       <Buttoncontainer>

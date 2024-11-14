@@ -14,7 +14,7 @@ export const Categorypage = () => {
 
   const startHandle = async () => {
     const Questions = await categoryPost(categoryArray);
-    navigate('#/question', {state: {Questions: Questions}});
+    // navigate('#/question', {state: {Questions: Questions}});
     localStorage.setItem("next", false);
   }
 
