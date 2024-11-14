@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { instance } from '../apis/instance';
 
+
 export const LoginPage = () => {
   const navigate = useNavigate();
 
