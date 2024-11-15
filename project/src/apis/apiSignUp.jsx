@@ -1,6 +1,6 @@
 import { instance } from './instance';
 
-export const apiSignUp = async ({ email, password, setModal }) => {
+export const apiSignUp = async ({ email, password, setModal, setInputs }) => {
   try {
     const response = await instance.post('/auth/signup', {
       email,
@@ -9,6 +9,13 @@ export const apiSignUp = async ({ email, password, setModal }) => {
 
     if (response.status === 200) {
       console.log('회원가입 성공');
+
+      setInputs({
+        email: '',
+        code: '',
+        password1: '',
+        password2: '',
+      });
       setModal(true);
     }
   } catch (error) {

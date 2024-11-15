@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { instance } from '../apis/instance';
 
-
-export const LoginPage = () => {
+export const LoginPage = ({ setModal }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const SignUpClick = () => {
+    if (pathname.includes('SignUp')) {
+      setModal(false);
+    }
     navigate('/SignUp');
   };
 
