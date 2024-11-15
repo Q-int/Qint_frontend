@@ -1,26 +1,36 @@
-import styled, { css } from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom";
-import { LoginPage } from "../pages/LoginPage";
-import { useState } from "react";
+import styled, { css } from 'styled-components';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { LoginPage } from '../pages/LoginPage';
+import { useEffect, useState } from 'react';
 
 export const Header = () => {
   const [modal, setModal] = useState(false);
   const { pathname } = useLocation();
+  const [isButton, setIsbutton] = useState('');
+  const accessToken = localStorage.getItem('accessToken');
 
   const navigate = useNavigate();
 
   const MyPageClick = () => {
-    navigate("/mypage");
+    navigate('/mypage');
   };
 
   const LogoClick = () => {
-    navigate("/");
+    navigate('/');
   };
 
   const LoginClick = () => {
-    setModal("true");
+    setModal('true');
   };
 
+  const LogoutClick = () => {
+    localStorage.removeItem('accessToken');
+    setIsbutton('로그인');
+  };
+
+  useEffect(() => {
+    setIsbutton(accessToken ? '로그아웃' : '로그인');
+  }, [accessToken]);
   // if (modal == "true") {
   // }
 
@@ -31,7 +41,9 @@ export const Header = () => {
         <Mypagebtn pathname={pathname} onClick={MyPageClick}>
           마이페이지
         </Mypagebtn>
-        <Loginbtn onClick={LoginClick}>로그인</Loginbtn>
+        <Loginbtn onClick={isButton === '로그아웃' ? LogoutClick : LoginClick}>
+          {isButton}
+        </Loginbtn>
       </Buttons>
       {modal && (
         <ModalOverlay onClick={LoginClick}>
@@ -53,8 +65,8 @@ const Container = styled.div`
 `;
 
 const Logo = styled.img.attrs({
-  src: "/images/Q-int.svg",
-  alt: "로고",
+  src: '/images/Q-int.svg',
+  alt: '로고',
 })`
   cursor: pointer;
   height: 3vh;
@@ -74,7 +86,7 @@ const Mypagebtn = styled.div`
   white-space: nowrap;
   cursor: pointer;
   ${({ pathname }) =>
-    pathname.includes("mypage")
+    pathname.includes('mypage')
       ? css`
           color: #00eda6;
           font-weight: 700;
