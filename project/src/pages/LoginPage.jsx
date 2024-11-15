@@ -45,9 +45,8 @@ export const LoginPage = ({ setModal }) => {
       });
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data;
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-
+        localStorage.setItem('accessToken', { accessToken });
+        localStorage.setItem('refreshToken', { refreshToken });
         navigate('/category');
       }
     } catch (error) {
