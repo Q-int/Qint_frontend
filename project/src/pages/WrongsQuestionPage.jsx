@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { Header } from "../components/Header";
 import { Nextbtn } from "../components/Nextbtn";
 import { Option } from "../components/Option";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { apiWrongQ } from "../apis/apiWrongQ";
 
 export const WrongsQuestionPage = () => {
-  const Questions = {
+  const [Questions, setQuestions] = useState({
     incorrect_answers: [
       {
         contents: "π를 제대로 기술한 것은?",
@@ -117,7 +118,7 @@ export const WrongsQuestionPage = () => {
         correct_answer: "let",
       },
     ],
-  };
+  });
 
   const [WQnum, setWQnum] = useState(0);
   const [WQlength, setWQlength] = useState(Questions.incorrect_answers.length);
@@ -125,6 +126,15 @@ export const WrongsQuestionPage = () => {
   const nextWrongQuestion = (n) => {
     setWQnum(n);
   };
+
+  const getWQ = async () => {
+    const WQs = await apiWrongQ();
+    setQuestions(WQs);
+  }
+
+  useEffect(() => {
+    getWQ();
+  }, [])
 
   return (
     <Container>

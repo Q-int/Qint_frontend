@@ -16,33 +16,36 @@ export const Option = ({
   onEXQ,
   isGrading,
   onGrading,
+  setQInfo,
+  QInfo,
+  getQ,
 }) => {
   const [rw, setRw] = useState(undefined);
   const [isClicked, setIsClicked] = useState(undefined);
   const { pathname } = useLocation();
 
-  const [Question, setQuestion] = useState({
-		"answer_text" : "3.1415926535...",
-		"commentay" : "어쩌구 저쩌구 해서 쨌든 그냥 니가 틀리고 내가 맞음 어쩔팁이",
-		"is_correct" : true
-});
+  const [Question, setQuestion] = useState();
 
-  const clickHandle = () => {
-    if (pathname.includes("question")) {
-      if (isClicked) {
-        setQuestion(apiGrading(questionId, id));
-        if(Question.is_correct){
-          setRw(true);
-        }
-        onShowEXbtn(true);
-        onEXQ(Question);
-        onGrading(true);
-      } else if(!isGrading){
-        setIsClicked(true);
-        selected(id);
+const clickHandle = async () => {
+  if (pathname.includes("question")) {
+    if (isClicked) {
+      const Q = await apiGrading(questionId, id);
+      setQuestion(Q);
+      setIsClicked(false);
+      onShowEXbtn(true);
+      onEXQ(Q); // 최신 Q를 전달하여 EXQ 업데이트
+      setQInfo(Q.answer_text);
+      console.log(123);
+      if(getQ() != option.text){
+        setRw(false);
       }
+      onGrading(true);
+    } else if (!isGrading) {
+      setIsClicked(true);
+      selected(id);
     }
-  };
+  }
+};
 
   useEffect(() => {
     if (isClicked && selectedOption != id) {
@@ -52,16 +55,28 @@ export const Option = ({
 
   useEffect(() => {
     setIsClicked(false);
+    setRw(undefined);
   }, [Qnum]);
 
   useEffect(() => {
     if(pathname.includes('explain')) {
       setRw(true);
     }
-    if(isGrading){
-      setRw(EXQ.is_correct);
-    }
   }, [pathname, isGrading, EXQ])
+
+  useEffect(() => {
+    if(isGrading){
+      const gQ = getQ();
+      console.log(option.text);
+      console.log(gQ);
+      if(gQ == option.text){
+        setRw(true);
+        // console.log(123);
+      } else {
+        // console.log(789);
+      }
+    }
+  }, [EXQ]);
 
   return (
     <Container

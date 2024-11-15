@@ -10,6 +10,8 @@ import { ScoreCheckPage } from "./ScoreCheckPage";
 export const Questionpage = () => {
   const location = useLocation();
 
+  const [QInfo, SetQInfo] = useState();
+  const [answerText, setAnswerText] = useState();
   const [Qnum, setQnum] = useState(0);
   const [showExplainBtn, setShowExplainBtn] = useState(false);
   const [EXQ, setEXQ] = useState();
@@ -369,6 +371,7 @@ export const Questionpage = () => {
 
   const onEXQ = (Q) => {
     setEXQ(Q);
+    console.log();
   };
 
   const onGrading = (tf) => {
@@ -400,6 +403,10 @@ export const Questionpage = () => {
   }, [location.state]); // location.state가 변경될 때마다 실행
   
 
+  const getQ = () => {
+    return QInfo;
+  }
+
   return (
     <>
       <Header />
@@ -424,6 +431,11 @@ export const Questionpage = () => {
               onEXQ={onEXQ}
               isGrading={isGrading}
               onGrading={onGrading}
+              setQInfo={SetQInfo}
+              QInfo={QInfo}
+              getQ={getQ}
+              setAnswerText={setAnswerText}
+              answerText={answerText}
             />
           ))}
         </Optionscontainer>

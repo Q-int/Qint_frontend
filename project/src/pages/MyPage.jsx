@@ -2,11 +2,19 @@ import { Header } from "../components/Header";
 import styled from "styled-components";
 import { Piechart } from "../components/Piechart";
 import { useNavigate } from "react-router-dom";
+import { apiWrongQ } from "../apis/apiWrongQ";
+import { useEffect, useState } from "react";
+import { apiMypage } from "../apis/apiMypage";
 
 export const Mypage = () => {
   const navigate = useNavigate();
-
+  const [data, setData] = useState([
+    { id: '정답', value: 30},
+    { id: '오답', value: 70},
+]);
   const showWrongQsbtnHandle = () => {
+    const wrongs = apiWrongQ();
+    console.log(wrongs);
     navigate('/wrongs');
   }
 
@@ -14,10 +22,17 @@ export const Mypage = () => {
     navigate('/');
   }
 
-  const data = [
-    { id: '정답', value: 70 },
-    { id: '오답', value: 30 },
-];
+  const getMypageInfo = async () => {
+    const mypageInfo =  apiMypage()
+    setData([
+      { id: '정답', value: parseInt(Math.floor(15 / mypageInfo.correct_answers))},
+      { id: '오답', value: parseInt(Math.floor(15 / mypageInfo.incorrect_answers))},
+  ]);
+  }
+
+  useEffect(() => {
+    getMypageInfo();
+  }, [])
 
 
   return(
