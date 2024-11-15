@@ -1,12 +1,21 @@
 import { instance } from "./instance";
 
-export const categoryPost = async () => {
+export const categoryPost = async (categories) => {
+  const token = localStorage.getItem('accessToken');  // 토큰을 로컬 스토리지에서 가져옴
+  const categoriesString = categories.join(",");// 이거로 바꿈
+
+  if (!token) {
+    console.error("토큰이 없습니다. 인증 오류가 발생할 수 있습니다.");
+    return;
+  }
+
   try {
-    const res = await instance.get('/questions', {
-      categories: ["BACKEND", "FRONTEND"],  // body로 보내는 데이터
-    }, {
+    const res = await instance.get('/questions/categories', {
+      params: {
+        categories: categoriesString // 이거 수정함
+      },
       headers: {
-        'Authorization': `eyJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb2VoZ25zMDkxOUBnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImV4cCI6MTczNDE2MzUwNCwiaWF0IjoxNzMxNTcxNTA0fQ._5IxqM5eU0JG_ii9wvJZrR0A2W51J1MtW6Ybif4p8P4`,
+        'Authorization': `Bearer ${token}`
       }
     });
 
@@ -15,6 +24,6 @@ export const categoryPost = async () => {
       return questions;
     }
   } catch (err) {
-    console.log(err.message);
+    console.log("에러 메시지:", err.response ? err.response.data : err.message);
   }
 };
