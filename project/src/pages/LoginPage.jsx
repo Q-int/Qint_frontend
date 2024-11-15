@@ -4,10 +4,11 @@ import { Button } from '../components/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { instance } from '../apis/instance';
-
+import { useCookies } from 'react-cookie';
 export const LoginPage = ({ setModal }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [cookies, setCookies] = useCookies(['access_token', 'refresh_token']);
 
   const SignUpClick = () => {
     if (pathname.includes('SignUp')) {
@@ -31,12 +32,6 @@ export const LoginPage = ({ setModal }) => {
     });
   };
 
-  useEffect(() => {
-    if (email !== '' && password != '') {
-      console.log(inputs);
-    }
-  }, [email, password]);
-
   const handleLogin = async () => {
     try {
       const response = await instance.post('/auth/login', {
@@ -44,9 +39,13 @@ export const LoginPage = ({ setModal }) => {
         password,
       });
       if (response.status === 200) {
-        const { accessToken, refreshToken } = response.data;
-        localStorage.setItem('accessToken', { accessToken });
-        localStorage.setItem('refreshToken', { refreshToken });
+        const { access_token, refresh_token } = response.data;
+        setCookies('access_token', access_token);
+        setCookies('refresh_token', refresh_token);
+
+        localStorage.setItem('refresh_token', cookies.refresh_token);
+        localStorage.setItem('access_token', cookies.access_token);
+
         navigate('/category');
       }
     } catch (error) {

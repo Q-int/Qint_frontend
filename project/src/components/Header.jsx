@@ -7,7 +7,7 @@ export const Header = () => {
   const [modal, setModal] = useState(false);
   const { pathname } = useLocation();
   const [isButton, setIsbutton] = useState('');
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('access_token');
 
   const navigate = useNavigate();
 
@@ -24,8 +24,8 @@ export const Header = () => {
   };
 
   const LogoutClick = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
     setIsbutton('로그인');
     navigate('/');
   };

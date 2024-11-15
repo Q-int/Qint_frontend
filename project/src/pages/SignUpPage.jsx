@@ -88,17 +88,6 @@ export const SignUpPage = () => {
     });
   };
 
-  //객체에 회원가입 내용 보내기
-  useEffect(() => {
-    if (email !== '' && code !== '' && password1 !== '' && password2 !== '') {
-      //signup의 내용이 공백이 아닐 때
-      if (passwordCheck1() && passwordCheck2()) {
-        //비밀번호 형식에 맞는지 확인한다.
-        console.log(inputs);
-      }
-    }
-  }, [email, code, password1, password2]);
-
   // 아래 내용은 Email style, api에 대한 내용입니다.
   const [getUnion, setGetUnion] = useState(false);
 
