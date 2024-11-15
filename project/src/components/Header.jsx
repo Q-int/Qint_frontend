@@ -25,7 +25,9 @@ export const Header = () => {
 
   const LogoutClick = () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
     setIsbutton('로그인');
+    navigate('/');
   };
 
   useEffect(() => {
@@ -38,9 +40,11 @@ export const Header = () => {
     <Container>
       <Logo onClick={LogoClick}></Logo>
       <Buttons>
-        <Mypagebtn pathname={pathname} onClick={MyPageClick}>
-          마이페이지
-        </Mypagebtn>
+        {isButton === '로그아웃' && (
+          <Mypagebtn pathname={pathname} onClick={MyPageClick}>
+            마이페이지
+          </Mypagebtn>
+        )}
         <Loginbtn onClick={isButton === '로그아웃' ? LogoutClick : LoginClick}>
           {isButton}
         </Loginbtn>
