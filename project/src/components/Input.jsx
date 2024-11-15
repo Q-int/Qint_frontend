@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { useState } from "react";
-import { Eyes } from "../assets/Eyes";
+import styled from 'styled-components';
+import { useState } from 'react';
+import { Eyes } from '../assets/Eyes';
 
 export const Input = ({
   placeholder,
@@ -37,13 +37,13 @@ export const Input = ({
           </InputExplain>
         )}
       </ExplainContainer>
-      {type === "password" && (
+      {type === 'password' && (
         <PasswordEye
           onClick={() =>
-            setShowPswd((prev) => (prev === "password" ? "text" : "password"))
+            setShowPswd((prev) => (prev === 'password' ? 'text' : 'password'))
           }
         >
-          <Eyes isEye={showPswd === "text"} />
+          <Eyes isEye={showPswd === 'text'} />
         </PasswordEye>
       )}
     </InputFakeContainer>
@@ -53,10 +53,10 @@ export const Input = ({
 const InputContainer = styled.input`
   border: ${({ value, $isSignUp, $isError }) => {
       return !value || !$isSignUp
-        ? "#ffffff"
+        ? '#ffffff'
         : $isError
-        ? "#ff3951"
-        : "#00eda6";
+        ? '#ff3951'
+        : '#00eda6';
     }}
     solid 0.1vw;
   background-color: #f4f4f4;
@@ -74,10 +74,10 @@ const InputContainer = styled.input`
     background-color: #ffffff;
     border: ${({ $isSignUp, $isError, value }) => {
         return !$isSignUp || !value
-          ? "#e0e0e0"
+          ? '#e0e0e0'
           : $isError
-          ? "#ff3951"
-          : "#00eda6";
+          ? '#ff3951'
+          : '#00eda6';
       }}
       solid 0.1vw;
   }
@@ -104,7 +104,7 @@ const PasswordEye = styled.button`
 
 const InputExplain = styled.div`
   font-size: 1.1vh;
-  color: ${({ $isError }) => ($isError ? "#ff3951" : "#00eda6")};
+  color: ${({ $isError }) => ($isError ? '#ff3951' : '#00eda6')};
 `;
 
 const ExplainContainer = styled.div`

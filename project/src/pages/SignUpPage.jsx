@@ -16,10 +16,21 @@ import { apiSignUp } from '../apis/apiSignUp';
 export const SignUpPage = () => {
   //api가 맞나, 클릭했을 때 router 설정
   const signupClick = async () => {
-    apiSignUp({ email, password: password1, setModal });
+    apiSignUp({
+      email,
+      password: password1,
+      setModal,
+      setInputs,
+    });
   };
 
   const loginPathClick = () => {
+    setInputs({
+      email: '',
+      code: '',
+      password1: '',
+      password2: '',
+    });
     setModal(true);
   };
 
@@ -203,8 +214,8 @@ export const SignUpPage = () => {
               fontWeight="700"
             />
             {modal && (
-              <ModalOverlay onClick={signupClick}>
-                <LoginPage />
+              <ModalOverlay>
+                <LoginPage setModal={setModal} />
               </ModalOverlay>
             )}
           </SignUpContent>
