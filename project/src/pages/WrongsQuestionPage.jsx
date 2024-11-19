@@ -7,7 +7,7 @@ import { apiWrongQ } from "../apis/apiWrongQ";
 
 export const WrongsQuestionPage = () => {
   const [Questions, setQuestions] = useState({
-    incorrect_answers: [
+    user_incorrect_answers_element_list: [
       {
         contents: "π를 제대로 기술한 것은?",
         commentary:
@@ -121,7 +121,7 @@ export const WrongsQuestionPage = () => {
   });
 
   const [WQnum, setWQnum] = useState(0);
-  const [WQlength, setWQlength] = useState(Questions.incorrect_answers.length);
+  const [WQlength, setWQlength] = useState(Questions.user_incorrect_answers_element_list.length);
 
   const nextWrongQuestion = (n) => {
     setWQnum(n);
@@ -130,6 +130,7 @@ export const WrongsQuestionPage = () => {
   const getWQ = async () => {
     const WQs = await apiWrongQ();
     setQuestions(WQs);
+    setWQlength(WQs.user_incorrect_answers_element_list.length);
   }
 
   useEffect(() => {
@@ -140,18 +141,18 @@ export const WrongsQuestionPage = () => {
     <Container>
       <Header />
       <Contentboxcontainer>
-        <Contentbox>{Questions.incorrect_answers[WQnum].contents}</Contentbox>
+        <Contentbox>{Questions.user_incorrect_answers_element_list[WQnum].contents}</Contentbox>
       </Contentboxcontainer>
       <Explaincontainer>
         <Option
-          option={Questions.incorrect_answers[WQnum].incorrect_answer}
+          option={Questions.user_incorrect_answers_element_list[WQnum].incorrect_answer}
           rw={false}
         />
         <Option
-          option={Questions.incorrect_answers[WQnum].correct_answer}
+          option={Questions.user_incorrect_answers_element_list[WQnum].correct_answer}
           rw={true}
         />
-        <Explainbox>{Questions.incorrect_answers[WQnum].commentary}</Explainbox>
+        <Explainbox>{Questions.user_incorrect_answers_element_list[WQnum].commentary}</Explainbox>
       </Explaincontainer>
       <Buttoncontainer>
         <Nextbtn

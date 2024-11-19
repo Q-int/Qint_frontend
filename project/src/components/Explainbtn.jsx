@@ -2,20 +2,18 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export const Explainbtn = ({ showEXbtn, EXQ, Qnum }) => {
+export const Explainbtn = ({ showEXbtn, EXQ, Qnum, Q }) => {
   const navigate = useNavigate();
 
-  const [currentEXQ, setCurrentEXQ] = useState(EXQ);
-
   useEffect(()=>{
-    setCurrentEXQ(EXQ);
+    console.log(EXQ);
   }, [EXQ]);
 
   const EXbtnClickHandle = () => {
-    navigate("/explain", { state: { EXQ: currentEXQ, Qnum: Qnum} });
+    navigate("/explain", { state: { EXQ: EXQ, Qnum: Qnum, Q: Q} });
     localStorage.setItem("next", 'ing');
     localStorage.setItem("Qnum", Qnum);
-    console.log(EXQ);
+    console.log(123);
   };
 
   return (

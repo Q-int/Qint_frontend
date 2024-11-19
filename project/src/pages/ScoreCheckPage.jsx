@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { apiMypage } from '../apis/apiMypage';
 
 export const ScoreCheckPage = () => {
+
+  const [Qs, setQs] = useState({
+    incorrect_answers: 0,
+    correct_answers: 0,
+  })
+
   const navigate = useNavigate();
 
   const mainClick = () => {
@@ -13,14 +21,23 @@ export const ScoreCheckPage = () => {
     navigate('/mypage');
   };
 
+  const QuestionsInfo = async () => {
+    const Qs = await apiMypage();
+    setQs(Qs);
+  }
+
+  useEffect(() => {
+    QuestionsInfo();
+  }, [])
+
   return (
     <ModalBack>
       <ScoreModal>
         <ModalContents>
           <ScoreTotalContents>
             <ScoreTotal>총 문제 수 : 15</ScoreTotal>
-            <ScoreTotal>정답 : 10</ScoreTotal>
-            <ScoreTotal>오답 : 5</ScoreTotal>
+            <ScoreTotal>정답 : {Qs.correct_answers}</ScoreTotal>
+            <ScoreTotal>오답 : {Qs.incorrect_answers}</ScoreTotal>
           </ScoreTotalContents>
           <Button
             value1="메인 페이지로 이동"

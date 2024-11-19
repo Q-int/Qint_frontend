@@ -11,6 +11,7 @@ export const apiMypage = async () => {
       }
     });
     if(res.status == 200){
+      console.log(res.data.incorrect_answers);
       console.log(res.data.correct_answers);
       const myInfo = res.data;
       return myInfo;

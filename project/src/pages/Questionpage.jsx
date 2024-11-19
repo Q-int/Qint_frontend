@@ -4,7 +4,7 @@ import { Option } from "../components/Option";
 import { Nextbtn } from "../components/Nextbtn";
 import { useEffect, useRef, useState } from "react";
 import { Explainbtn } from "../components/Explainbtn";
-import { useLocation } from "react-router-dom";
+import { json, useLocation } from "react-router-dom";
 import { ScoreCheckPage } from "./ScoreCheckPage";
 
 export const Questionpage = () => {
@@ -371,7 +371,6 @@ export const Questionpage = () => {
 
   const onEXQ = (Q) => {
     setEXQ(Q);
-    console.log();
   };
 
   const onGrading = (tf) => {
@@ -381,17 +380,23 @@ export const Questionpage = () => {
   useEffect(() => {
     if (localStorage.getItem("next") == "true") {
       setQnum(parseInt(localStorage.getItem("Qnum")) + 1);
+      const Qus = localStorage.getItem("Questions");
+      setQuestions(JSON.parse(Qus));
       localStorage.setItem("next", false);
     } else if(localStorage.getItem("next") == "ing") {
       setQnum(parseInt(localStorage.getItem("Qnum")))
     }
   });
+
   useEffect(() => {
     setIsGrading(false);
   }, [Qnum])
+
   const getQuestion = async () => {
-    const q = location.state.Questions;  // location.state가 유효한 상태에서만 실행됨
+    console.log(location.state.Questions);
+    const q = await location.state.Questions;  // location.state가 유효한 상태에서만 실행됨
     setQuestions(q);
+    localStorage.setItem('Questions', JSON.stringify(q));
   };
   
   
@@ -440,13 +445,14 @@ export const Questionpage = () => {
           ))}
         </Optionscontainer>
         <Buttoncontainer>
-          <Explainbtn showEXbtn={showExplainBtn} EXQ={EXQ} Qnum={Qnum} />
+          <Explainbtn showEXbtn={showExplainBtn} EXQ={EXQ} Qnum={Qnum} Q={Questions.questions[Qnum].contents} />
           <Nextbtn
             Qnum={Qnum}
             onNextQ={nextQuestion}
             qModalState={qModalState}
             setQModalState={setQModalState}
             onShowEXbtn={onShowEXbtn}
+            grading={isGrading}
           />
         </Buttoncontainer>
         {qModalState && (

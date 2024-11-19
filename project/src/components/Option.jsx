@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { apiGrading } from "../apis/apiGrading";
+import { apiMypage } from "../apis/apiMypage";
 
 export const Option = ({
   option,
@@ -34,8 +35,7 @@ const clickHandle = async () => {
       setIsClicked(false);
       onShowEXbtn(true);
       onEXQ(Q); // 최신 Q를 전달하여 EXQ 업데이트
-      setQInfo(Q.answer_text);
-      console.log(123);
+      setQInfo(Q);
       if(getQ() != option.text){
         setRw(false);
       }
@@ -62,21 +62,18 @@ const clickHandle = async () => {
     if(pathname.includes('explain')) {
       setRw(true);
     }
-  }, [pathname, isGrading, EXQ])
+  }, [pathname])
 
   useEffect(() => {
-    if(isGrading){
+    if (isGrading) {
+      onGrading(false);
       const gQ = getQ();
-      console.log(option.text);
-      console.log(gQ);
-      if(gQ == option.text){
+      if (gQ.answer_text == option.text) {
         setRw(true);
-        // console.log(123);
-      } else {
-        // console.log(789);
       }
     }
   }, [EXQ]);
+  
 
   return (
     <Container
