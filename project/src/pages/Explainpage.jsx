@@ -10,10 +10,11 @@ import { ScoreCheckPage } from './ScoreCheckPage';
 export const Explainpage = ({ qModalState, setQModalState }) => {
   const [Question, setQuestion] = useState({
     answer_text: "3.1415926535...",
-    commentay: "어쩌구 저쩌구 해서 쨌든 그냥 니가 틀리고 내가 맞음 어쩔팁이",
+    commentary: "어쩌구 저쩌구 해서 쨌든 그냥 니가 틀리고 내가 맞음 어쩔팁이",
     is_correct: true
   });
   const [Qnum, setQnum] = useState();
+  const [Q, setQ] = useState();
 
   const location = useLocation();
 
@@ -22,18 +23,19 @@ export const Explainpage = ({ qModalState, setQModalState }) => {
   useEffect(() => {
     setQuestion(location.state.EXQ);
     setQnum(location.state.Qnum);
+    setQ(location.state.Q);
   });
 
   return (
     <Container>
       <Header />
       <Contentboxcontainer>
-        <Contentbox>{Question.commentay}</Contentbox>
+        <Contentbox>{Q}</Contentbox>
         <QnumText>{Qnum + 1}/15</QnumText>
       </Contentboxcontainer>
       <Explaincontainer>
         <Option option={Question.answer_text}/>
-        <Explainbox>그거 아닌데 뭔소리징</Explainbox>
+        <Explainbox>{Question.commentary}</Explainbox>
       </Explaincontainer>
       <Buttoncontainer>
         <Nextbtn qModalState={qModalState} setQModalState={setQModalState} setIsModal={setIsModal} Qnum={Qnum}/>

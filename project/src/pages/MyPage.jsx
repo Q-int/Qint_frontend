@@ -23,10 +23,10 @@ export const Mypage = () => {
   }
 
   const getMypageInfo = async () => {
-    const mypageInfo =  apiMypage()
+    const mypageInfo = await apiMypage()
     setData([
-      { id: '정답', value: parseInt(Math.floor(15 / mypageInfo.correct_answers))},
-      { id: '오답', value: parseInt(Math.floor(15 / mypageInfo.incorrect_answers))},
+      { id: '정답', value: parseInt(Math.round((mypageInfo.correct_answers / 15) * 100))},
+      { id: '오답', value: parseInt(Math.round((mypageInfo.incorrect_answers / 15) * 100))},
   ]);
   }
 

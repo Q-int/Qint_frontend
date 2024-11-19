@@ -16,6 +16,7 @@ export const apiGrading = async (questionId, answerId) => {
         }
       }
     );
+    console.log(4564321);
 
     if (res.status === 200) {
       const grading = res.data;
