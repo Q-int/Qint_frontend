@@ -12,8 +12,9 @@ export const apiCodeCheck = async ({
       auth_code,
     });
     if (response.status === 200) {
-      const { isVerified } = response.data;
-      if (isVerified) {
+      const { is_verified } = response.data;
+      console.log(is_verified);
+      if (is_verified) {
         setExplainCode('인증코드가 일치합니다.');
         setGetCode(false);
       } else {
